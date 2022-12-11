@@ -6,12 +6,12 @@ from chip_fill_frame import ChipFillFrame
 from tables_frame import TablesFrame
 from events_frame import EventsFrame
 from applog import setup_logging
-
+from personel_frame import PersonelFrame
 
 logger=setup_logging()
-logger.debug('STARTING')
+logger.debug('app.py: STARTING')
+pages = dict()
 
-LABEL_FONT = ("Arial", 16, "bold")
 RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
 
 def on_tab_change(ev):
@@ -22,11 +22,18 @@ def on_tab_change(ev):
     r=notebook.tab(idx)
     rtext=r['text'].lower()
 
-    page = pages[rtext]
+    # rtext here is the key in the pages array
+    # If we cared, we would put a focus method in all classes
     if rtext=='events':
-        pages[rtext].refresh()
+        pages[rtext].focus()
     logger.warning(f'on_tab_change called with event: {idx}')
     pass
+
+def get_tab_idx_by_name(tabname):
+    """
+    Return the index of the given tab
+    """
+
 
 
 if __name__ == '__main__':
@@ -44,15 +51,12 @@ if __name__ == '__main__':
         'tables': TablesFrame(notebook),
         'chip fill': ChipFillFrame(notebook),
         'events': EventsFrame(notebook),
+        'personnel': PersonelFrame(notebookk)
     }
     for k, v in pages.items():
+        # make the string look good
         notebook.add(v, text=k.replace('_', ' ').title())
 
-#    notebook.add(register_frame, text="Καταγραφή Γεγονότος")
-#    notebook.add(chipfill_frame, text='Chip Fill')
-#    notebook.add(tables_frame, text="Tables")
-#    notebook.add(events_frame, text='EVENTS')
-
-    notebook.select(2)
+    notebook.select(3)
     window.mainloop()
 
