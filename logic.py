@@ -16,6 +16,10 @@ def save_event(event_dict, filepath):
     Σε αντίθετη περίπτωση, κατασκευάζουμε ένα νέο όνομα αρχείου σύμφωνα με 
     την τρέχουσα ημερομηνία και ώρα, και το αποθηκεύουμε στο φάκελο LOG_DIR.
     """
+
+    if not os.path.isdir("logs"):
+        os.mkdir("logs")
+    
     if filepath is None:
         datetime_str = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S_%f")
         filename = f"record_{datetime_str}.json"
