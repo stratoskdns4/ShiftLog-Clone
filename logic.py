@@ -45,15 +45,17 @@ def save_event(event_dict:dict={}, filepath:str='logs') -> bool:
 
 
 
-def add_event(
-        emp_name:str='anonymous', 
-        ev_desc:str='Nothing happened', 
-        ev_res:str='Fake test'
-        )->str:
+def add_event( ev_dict:dict={})->str:
     # Here we can check the validity of the data before committing
     logger.warning(f'---- adding event ----')
     timestamp = datetime.datetime.now()
-    payload = {'event_timestamp': timestamp, 'employee_name':emp_name, 'event_description':ev_desc, 'event_result':ev_res}
+    logger.warning(f'timestamp: {timestamp}, {ev_dict}')
+    payload = {
+            'event_timestamp': timestamp, 
+            'employee_name':ev_dict['employee_name'], 
+            'event_description':ev_dict['event_description'], 
+            'event_result':ev_dict['event_result']
+            }
     # Create our record
     res=None
     try:

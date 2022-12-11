@@ -19,13 +19,13 @@ class ChipFillFrame(tk.Frame):
         self.rowconfigure(2, weight=1, minsize=100)
         self.columnconfigure(tuple(range(self.N_COLS)), weight=1, minsize=200)
 
-        self.signle_chip_comps = []
+        self.single_chip_comps = []
 
         for i, chip_value in enumerate(CHIP_VALUES):
             rw, cl = divmod(i, self.N_COLS)
 
             scf = SingleChipFrame(self, chip_value=chip_value)
-            self.signle_chip_comps.append(scf)
+            self.single_chip_comps.append(scf)
 
             # bind events
             scf.chip_count_intvar.trace_add("write", self.update_label)
@@ -42,14 +42,14 @@ class ChipFillFrame(tk.Frame):
 
     def update_label(self, *args):
         total_chip_value = 0
-        for scf in self.signle_chip_comps:
+        for scf in self.single_chip_comps:
             total_chip_value += scf.get_total_value()
         
         text = "Σύνολο: {:7.2f}€".format(float(total_chip_value))
         self.total_label.config(text=text)
 
     def reset_all_counts(self):
-        for scf in self.signle_chip_comps:
+        for scf in self.single_chip_comps:
             scf.reset_count()
 
 

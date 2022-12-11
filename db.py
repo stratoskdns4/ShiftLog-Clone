@@ -23,14 +23,27 @@ class Qry(Query):
 class Event(Orm):
     """
     Here we define an event table for storing our data
+    We can also use similar tables to store e.g. people names & employee numbers, etc.
     """
     table_name='events'
     query_class=Qry
     event_timestamp = Field(datetime)
     employee_name = Field(str, max_size=512)
-    event_description = Field(str, max_size=512)
-    event_result = Field(str)
+    event_description = Field(str)
+    event_result = Field(str, max_size=512)
 
+
+class Person(Orm):
+    """
+    Store a person here if you want. Unused at the moment
+    We would define the employee in events table to be a foreign key into this table's primary key
+    All tables get a 'pk' field
+    """
+    table_name = 'person'
+    surname = Field(str)
+    forename = Field(str)
+    is_staff = Field(bool)
+    # etc.
 
 
 if __name__ == '__main__':

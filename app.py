@@ -24,10 +24,10 @@ def on_tab_change(ev):
 
     # rtext here is the key in the pages array
     # If we cared, we would put a focus method in all classes
-    if rtext=='events':
-        pages[rtext].focus()
-    logger.warning(f'on_tab_change called with event: {idx}')
-    pass
+    try:
+        pages[rtext].refresh()
+    except Exception as e:
+        logger.warning(f'exception calling refresh! {e}')
 
 def get_tab_idx_by_name(tabname):
     """
@@ -50,8 +50,8 @@ if __name__ == '__main__':
         'register': RegisterEventFrame(notebook),
         'tables': TablesFrame(notebook),
         'chip fill': ChipFillFrame(notebook),
+        'personnel': PersonelFrame(notebook),
         'events': EventsFrame(notebook),
-        'personnel': PersonelFrame(notebookk)
     }
     for k, v in pages.items():
         # make the string look good

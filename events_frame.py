@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import Listbox, LEFT, BOTH, RIGHT, END, Scrollbar
-import os
+import sys
 from db import Event
 import logging
 logger = logging.getLogger(__name__)
@@ -13,11 +13,6 @@ class EventsFrame(tk.Frame):
 
         self.config(highlightbackground="black", highlightthickness=1)
 
-        # ισόρρoπησε το grid
-        #self.rowconfigure(tuple(range(4)), weight=1)
-        #self.columnconfigure(tuple(range(3)), weight=1)
-        #self.rowconfigure(1, weight=2)
-        #self.rowconfigure(0, weight=2)
         self.events_frame = Listbox(self)
         self.events_frame.pack(side=LEFT, fill=BOTH, expand=True)
         self.events_frame_scrollbar = Scrollbar(root)
@@ -26,28 +21,36 @@ class EventsFrame(tk.Frame):
         self.events_frame_scrollbar.config(command=self.events_frame.yview)
         self.idx = 0
         self.last_pk = None
+        self.refresh()
+        logger.debug('events frame initialised')
 
     def refresh(self):
         """
         Can be called programatically
         We check the self.last_pk to see what the lowest ID is so we only query for records higher than that
+        TODO: Fix
         """
-        logger.warning(f'refresh called')
+        fn=sys._getframe(1).f_code.co_name
+        logger.warning(f'focus called')
         self.events_frame
         if self.last_pk:
             events = self.get_new_records(self.last_pk)
             for i, ev in enumerate(events):
+                self.update_last_pk(ev.pk)
                 evstr = self.format_event_string(ev)
                 self.events_frame.insert(0, evstr)
         else:
             self.events = self.get_last_n_events()
             self.last_pk = 0
             for i, ev in enumerate(self.events):
-                if self.last_pk < ev.pk:
-                    self.last_pk = ev.pk
+                self.update_last_pk(ev.pk)
                 self.idx = i
                 evstr = self.format_event_string(ev)
                 self.events_frame.insert(END, evstr)
+
+    def update_last_pk(self, pk):
+        if self.last_pk < pk:
+            self.last_pk = pk
 
     def format_event_string(self, ev:Event) -> str:
         """
@@ -61,13 +64,12 @@ class EventsFrame(tk.Frame):
         """
         return all records newer than "highest_pk" primary key
         """
-        new_events = Event.query.select('*').gt_field('pk', highest_pk).desc()
+        new_events = Event.query.select('*').gt_field('pk', highest_pk)
         return new_events
-
 
     def get_last_n_events(self, num_rows=100):
         """
         Return the last n-events in the Events table
         """
-        last_events = Event.query.select('*').desc().limit(num_rows)
+        last_events = Event.query.select('*').desc_field('pk').limit(num_rows)
         return last_events
