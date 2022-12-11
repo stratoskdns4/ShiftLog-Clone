@@ -4,9 +4,10 @@ from tkinter.messagebox import showinfo, showerror
 from tkinter import filedialog as fd
 import json
 
+from constants import LABEL_FONT
+
 from logic import save_event
 
-LABEL_FONT = ("Arial", 16, "bold")
 RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
 
 
@@ -16,7 +17,6 @@ class RegisterEventFrame(tk.Frame):
         super().__init__(root, **options)
 
         self.opened_filepath = None
-
 
         self.my_label = tk.Label(self, text="Καταγραφη Γεγονότος", font=LABEL_FONT, anchor=tk.W)
         self.my_label.pack(fill=tk.X, pady=10, padx=5)
@@ -120,3 +120,9 @@ class RegisterEventFrame(tk.Frame):
         except (KeyError, IndexError, ValueError, OSError, FileNotFoundError):
             showerror("Σφάλμα", "Σφάλμα κατά την ανάγνωση του αρχείου!")
             self.clear_all()
+
+
+if __name__ == "__main__":
+    from single_frame_runner import single_frame_runner
+
+    single_frame_runner(RegisterEventFrame)

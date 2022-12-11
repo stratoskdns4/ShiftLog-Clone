@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-
 import random
+
+from constants import LABEL_FONT
 
 GAME_TYPES = (
     "Blackjacjk", 
@@ -10,8 +11,6 @@ GAME_TYPES = (
     "Texas Holdem",
     "Mini Pundo Pago"
 )
-
-LABEL_FONT = ("Arial", 16, "bold")
 
 class Table:
 
@@ -165,11 +164,8 @@ class TablesFrame(tk.Frame):
         self.tables_treeview.insert('', 'end', values=(table.table_name, table.game), iid=idx)
 
 
-
-
 if __name__ == "__main__":
-    r = tk.Tk()
-    r.geometry("250x180")
-    TablesFrame(r).pack(fill=tk.BOTH, expand=True)
-    r.mainloop()
+    from single_frame_runner import single_frame_runner
+
+    single_frame_runner(TablesFrame)
   

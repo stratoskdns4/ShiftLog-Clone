@@ -2,9 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 
 from single_chip_frame import SingleChipFrame
+from constants import LABEL_FONT
 
-
-LABEL_FONT = ("Arial", 16, "bold")
 CHIP_VALUES = [5000, 1000, 500, 100, 25, 10, 5, 2.5] #, 1.25]
 
 
@@ -56,8 +55,7 @@ class ChipFillFrame(tk.Frame):
 
 
 if __name__ == "__main__":
-    r = tk.Tk()
-    #r.geometry("250x180")
-    ChipFillFrame(r).pack(fill=tk.BOTH, expand=True)
-    r.mainloop()
+    from single_frame_runner import single_frame_runner
+
+    single_frame_runner(ChipFillFrame)
   

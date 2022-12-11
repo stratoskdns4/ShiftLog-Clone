@@ -2,9 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 import os
 
+from constants import LABEL_FONT, ENTRY_FONT
 
-LABEL_FONT = ("Arial", 16, "bold")
-ENTRY_FONT = ("Arial", 14, "bold")
 
 class SingleChipFrame(tk.Frame):
 
@@ -84,7 +83,6 @@ class SingleChipFrame(tk.Frame):
 
 
 if __name__ == "__main__":
-    r = tk.Tk()
-    r.geometry("250x180")
-    SingleChipFrame(r).pack(fill=tk.BOTH, expand=True)
-    r.mainloop()
+    from single_frame_runner import single_frame_runner
+
+    single_frame_runner(SingleChipFrame, dimensions=(250, 180))
