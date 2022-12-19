@@ -1,8 +1,8 @@
 import tkinter as tk
-from tkinter import Listbox, LEFT, BOTH, RIGHT, END, Scrollbar
 import sys
 from db import Event
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -13,10 +13,10 @@ class EventsFrame(tk.Frame):
 
         self.config(highlightbackground="black", highlightthickness=1)
 
-        self.events_frame = Listbox(self)
-        self.events_frame.pack(side=LEFT, fill=BOTH, expand=True)
-        self.events_frame_scrollbar = Scrollbar(root)
-        self.events_frame_scrollbar.pack(side=RIGHT, fill=BOTH)
+        self.events_frame = tk.Listbox(self)
+        self.events_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        self.events_frame_scrollbar = tk.Scrollbar(root)
+        self.events_frame_scrollbar.pack(side=tk.RIGHT, fill=tk.BOTH)
         self.events_frame.config(yscrollcommand=self.events_frame_scrollbar.set)
         self.events_frame_scrollbar.config(command=self.events_frame.yview)
         self.idx = 0
@@ -46,7 +46,7 @@ class EventsFrame(tk.Frame):
                 self.update_last_pk(ev.pk)
                 self.idx = i
                 evstr = self.format_event_string(ev)
-                self.events_frame.insert(END, evstr)
+                self.events_frame.insert(tk.END, evstr)
 
     def update_last_pk(self, pk):
         if self.last_pk < pk:
