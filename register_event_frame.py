@@ -6,7 +6,7 @@ import json
 
 from constants import LABEL_FONT
 
-from logic import save_event
+from logic import add_event 
 
 RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
 
@@ -81,11 +81,11 @@ class RegisterEventFrame(tk.Frame):
         # Πέρνω τα δεδομένα από τη φόρμα
         event_dict = {
             "employee_name": self.employee_entry.get(),
-            "event_description": self.description_text.get("1.0", tk.END),
+            "event_description": self.description_text.get("1.0", tk.END).strip(),
             "event_result": self.result_box.get()
         }
 
-        save_event(event_dict, self.opened_filepath)
+        add_event(event_dict)
         showinfo("Καταγραφή", "Η καταγραφή καταχωρήθηκε με επιτυχία!")
 
         self.clear_all()
