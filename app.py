@@ -8,6 +8,9 @@ from events_frame import EventsFrame
 from applog import setup_logging
 from personel_frame import PersonelFrame
 
+# Αυτό είναι το πρώτο comment από το νέο laptop
+
+
 logger=setup_logging()
 logger.debug('app.py: STARTING')
 pages = dict()
