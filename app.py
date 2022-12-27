@@ -7,6 +7,7 @@ from tables_frame import TablesFrame
 from events_frame import EventsFrame
 from applog import setup_logging
 from personel_frame import PersonelFrame
+from jackpot_frame import JackpotFrame
 
 # Αυτό είναι το πρώτο comment από το νέο laptop
 
@@ -49,13 +50,15 @@ if __name__ == '__main__':
     notebook.pack(fill=tk.BOTH, expand=True)
     notebook.bind('<<NotebookTabChanged>>', on_tab_change)
 
-    pages={
+    pages = {
         'register': RegisterEventFrame(notebook),
         'tables': TablesFrame(notebook),
         'chip fill': ChipFillFrame(notebook),
         'personnel': PersonelFrame(notebook),
         'events': EventsFrame(notebook),
+        'Jackpotcall': JackpotFrame(notebook)
     }
+
     for k, v in pages.items():
         # make the string look good
         notebook.add(v, text=k.replace('_', ' ').title())
