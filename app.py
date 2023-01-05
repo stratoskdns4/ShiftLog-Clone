@@ -56,7 +56,7 @@ if __name__ == '__main__':
         'chip fill': ChipFillFrame(notebook),
         'personnel': PersonelFrame(notebook),
         'events': EventsFrame(notebook),
-        'Jackpotcall': JackpotFrame(notebook)
+        'jackpot_call': JackpotFrame(notebook)
     }
 
     for k, v in pages.items():
