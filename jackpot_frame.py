@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter.messagebox import showinfo
 from constants import LABEL_FONT
+from logic import add_jackpot
 
 
 class JackpotFrame(tk.Frame):
@@ -20,7 +22,7 @@ class JackpotFrame(tk.Frame):
         self.description_text.pack(fill=tk.BOTH, padx=5, pady=5)
 
 
-        self.submit_button = tk.Button(self, text="Καταχώρηση")
+        self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=15, pady=5, anchor=tk.SE)
 
         self.text_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=15, anchor=tk.NW)
@@ -45,6 +47,35 @@ class JackpotFrame(tk.Frame):
         self.slot_machine_label.pack(padx=5, pady=5, anchor=tk.NW)
         self.slot_machine_entry = tk.Entry(self, width=30)
         self.slot_machine_entry.pack(padx=5, pady=5, anchor=tk.NW)
+
+    
+    def on_submit(self):
+        jackpot_data = {
+            "slot":self.slot_machine_entry.get(),
+            "name":self.customer_name_entry.get(),
+            "amount":float(self.amount_entry.get()),
+            "time":self.jackpot_time_entry.get(),
+            "description":self.description_text.get("1.0", tk.END)
+        }
+
+        add_jackpot(jackpot_data)
+        showinfo("Καταγραφή", "Η καταγραφή καταχωρήθηκε με επιτυχία!")
+        self.clear_all()
+
+
+    def clear_all(self):
+        self.amount_entry.delete(0, tk.END)
+        self.jackpot_time_entry.delete(0, tk.END)
+        self.slot_machine_entry.delete(0, tk.END)
+        self.customer_name_entry.delete(0, tk.END)
+        self.description_text.delete("1.0", tk.END)
+
+
+        
+
+        
+
+
 
         
 

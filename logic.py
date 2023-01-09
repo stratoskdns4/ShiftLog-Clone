@@ -65,3 +65,28 @@ def add_event( ev_dict:dict={})->str:
     # Save our changes
     return res
 
+
+def add_jackpot(jackpot_data):
+    description = "{} {} €{:.2f}  {}".format(
+        jackpot_data["slot"],
+        jackpot_data["time"],
+        jackpot_data["amount"],
+        jackpot_data["description"]
+    ) 
+    timestamp = datetime.datetime.now()
+
+    payload = {
+            'event_timestamp': timestamp, 
+            'employee_name': jackpot_data['name'], 
+            'event_description': description, 
+            'event_result':'JACKPOT'
+            }
+    # Create our record
+    res=None
+    try:
+        res=Event.create(**payload)
+    except Exception as e:
+        logger.error(f'Error saving out: {e}')
+    # Save our changes
+    return res
+
