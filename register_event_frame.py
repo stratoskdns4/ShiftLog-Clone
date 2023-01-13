@@ -10,7 +10,6 @@ from logic import add_event
 
 RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
 
-
 class RegisterEventFrame(tk.Frame):
 
     def __init__(self, root, **options):

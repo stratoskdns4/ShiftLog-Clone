@@ -1,14 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
 
+from applog import setup_logging
+
 from register_event_frame import RegisterEventFrame
 from chip_fill_frame import ChipFillFrame
 from tables_frame import TablesFrame
 from events_frame import EventsFrame
-from applog import setup_logging
 from personel_frame import PersonelFrame
 from jackpot_frame import JackpotFrame
-
+from cash_out_frame import CashoutFrame
 # Αυτό είναι το πρώτο comment από το νέο laptop
 
 
@@ -16,7 +17,6 @@ logger=setup_logging()
 logger.debug('app.py: STARTING')
 pages = dict()
 
-RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
 
 def on_tab_change(ev):
     """
@@ -56,7 +56,8 @@ if __name__ == '__main__':
         'chip fill': ChipFillFrame(notebook),
         'personnel': PersonelFrame(notebook),
         'events': EventsFrame(notebook),
-        'jackpot_call': JackpotFrame(notebook)
+        'jackpot_call': JackpotFrame(notebook),
+        'cashout_call': CashoutFrame(notebook)
     }
 
     for k, v in pages.items():

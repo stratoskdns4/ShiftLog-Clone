@@ -20,6 +20,12 @@ class Qry(Query):
         """
         return self.all().limit(rows).desc()
 
+    def delete_one(self, pk):
+        result = self.eq_pk(pk).one()
+
+        if result is not None:
+            result.delete()
+
 class Event(Orm):
     """
     Here we define an event table for storing our data

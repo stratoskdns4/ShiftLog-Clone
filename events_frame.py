@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter.messagebox import askyesno
 import sys
 from db import Event
 import logging
@@ -19,6 +20,8 @@ class EventsFrame(tk.Frame):
         self.events_frame_scrollbar.pack(side=tk.RIGHT, fill=tk.BOTH)
         self.events_frame.config(yscrollcommand=self.events_frame_scrollbar.set)
         self.events_frame_scrollbar.config(command=self.events_frame.yview)
+
+        self.events_frame.bind('<Delete>', self.on_delete)
         self.idx = 0
         self.last_pk = None
         self.refresh()
@@ -47,6 +50,21 @@ class EventsFrame(tk.Frame):
                 self.idx = i
                 evstr = self.format_event_string(ev)
                 self.events_frame.insert(tk.END, evstr)
+
+    def on_delete(self, event=None):
+        selected = self.events_frame.curselection()
+        if len(selected) != 1:
+            return
+        
+        sel_text = self.events_frame.get(selected[0])
+        sel_pk = int(sel_text[1:sel_text.find(']')])
+
+        answer = askyesno(title='Επιβεβαίωση', message='Είσαι σίγουρος ότι θέλεις να το αφεραίσεις?')
+
+        if answer:
+            Event.query.delete_one(sel_pk)
+            self.events_frame.delete(selected[0])
+            self.refresh()
 
     def update_last_pk(self, pk):
         if self.last_pk < pk:
