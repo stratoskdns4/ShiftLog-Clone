@@ -50,7 +50,7 @@ class JackpotFrame(tk.Frame):
 
     
     def on_submit(self):
-        cashout_data = {
+        jackpot_data = {
             "slot":self.slot_machine_entry.get(),
             "name":self.customer_name_entry.get(),
             "amount":float(self.amount_entry.get()),
@@ -69,17 +69,6 @@ class JackpotFrame(tk.Frame):
         self.slot_machine_entry.delete(0, tk.END)
         self.customer_name_entry.delete(0, tk.END)
         self.description_text.delete("1.0", tk.END)
-
-
-        
-
-        
-
-
-
-        
-
-
 
 
 if __name__ == "__main__":
