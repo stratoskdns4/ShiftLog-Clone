@@ -28,7 +28,7 @@ The app follows a tab-based design.
 To add a new tab, follow these steps:
 
 1. Create a new python file, using snake case notation for your frame name. Example: ```my_new_frame.py```
-2. Start your new Frame using this code snippet. Replace ```MyNewFrame``` with your frame name.:
+2. Start your new Frame using this code snippet. Replace ```MyNewFrame``` with your frame name:
 ```py
 import tkinter as tk
 
@@ -53,12 +53,15 @@ if __name__ == "__main__":
 ```
 
 3. Subscribe your new frame into the main app tab manager, by instanciating your frame into the
-```pages``` dict. Example:
+```pages``` dict in ```app.py```. Don't forget to import your frame. Example:
 ```py
+# ... other frame imports
+from my_new_frame import MyNewFrame
+
+# ... app initialization code
 pages = {
-    # other tabs
+    # ... other tabs
     'my_new_page': MyNewFrame(notebook)
 }
 ```
-
 4. Done!
