@@ -1,7 +1,6 @@
 import tkinter as tk
-from tkinter import ttk
 from tkinter.messagebox import showinfo
-from typing import Self
+
 from constants import LABEL_FONT
 
 
