@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter.messagebox import showinfo
+from logic import add_cashout
 
 from constants import LABEL_FONT
 
@@ -50,21 +51,21 @@ class CashoutFrame(tk.Frame):
 
     def on_submit(self):
         cashout_data = {
-            "window":self.window_entry.get(),
+            "window":self.cash_desk_window_entry.get(),
             "name":self.customer_name_entry.get(),
             "amount":float(self.amount_entry.get()),
             "time":self.cashout_time_entry.get(),
             "description":self.description_text.get("1.0", tk.END)
         }
 
-        
+        add_cashout(cashout_data)
         showinfo("Καταγραφή", "Η καταγραφή καταχωρήθηκε με επιτυχία!")
         self.clear_all()
 
 
     def clear_all(self):
         self.amount_entry.delete(0, tk.END)
-        self.cash_out_time_entry.delete(0, tk.END)
+        self.cashout_time_entry.delete(0, tk.END)
         self.cash_desk_window_entry.delete(0, tk.END)
         self.customer_name_entry.delete(0, tk.END)
         self.description_text.delete("1.0", tk.END)

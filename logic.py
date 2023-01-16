@@ -90,3 +90,27 @@ def add_jackpot(jackpot_data):
     # Save our changes
     return res
 
+
+def add_cashout(cashout_data):
+    description = "{} {} €{:.2f}  {}".format(
+        cashout_data["window"],
+        cashout_data["time"],
+        cashout_data["amount"],
+        cashout_data["description"]
+    ) 
+    timestamp = datetime.datetime.now()
+
+    payload = {
+            'event_timestamp': timestamp, 
+            'employee_name': cashout_data['name'], 
+            'event_description': description, 
+            'event_result': 'CASHOUT'
+            }
+    # Create our record
+    res=None
+    try:
+        res=Event.create(**payload)
+    except Exception as e:
+        logger.error(f'Error saving out: {e}')
+    # Save our changes
+    return res
