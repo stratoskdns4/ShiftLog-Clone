@@ -63,8 +63,7 @@ if __name__ == '__main__':
         'jackpot_call': JackpotFrame(notebook),
         'cashout_call': CashoutFrame(notebook),
         'roulette_calculator': RouletteCalculatorFrame(notebook),
-        'information': InformationFrame(notebook),
-       
+        'information': InformationFrame(notebook)
     }
 
     for k, v in pages.items():
