@@ -64,9 +64,7 @@ if __name__ == '__main__':
         'cashout_call': CashoutFrame(notebook),
         'roulette_calculator': RouletteCalculatorFrame(notebook),
         'information': InformationFrame(notebook),
-        'information_given_frame': InformationGivenFrame(notebook),
-        'information_received_frame': InformationReceivedFrame(notebook)
-    
+       
     }
 
     for k, v in pages.items():

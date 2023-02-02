@@ -1,7 +1,9 @@
 import tkinter as tk
+from tkinter import ttk
 
 from constants import LABEL_FONT
 
+INFORMATION_TYPES = ("General Information", "Information Given", "Information Received")
 
 class InformationFrame(tk.Frame):
 
@@ -15,6 +17,13 @@ class InformationFrame(tk.Frame):
         self.data_frame = tk.Frame(self)
         self.data_frame.columnconfigure(list(range(3)), weight=1)
         self.data_frame.rowconfigure(list(range(6)), weight=1)
+
+        self.info_type_label=tk.Label(self, text="Τύπος πληροφορίας")
+        self.info_type_label.pack(padx=5, pady=5, anchor=tk.W)
+
+        self.info_type_box = ttk.Combobox(self, values=INFORMATION_TYPES, state="readonly")
+        self.info_type_box.current(0)
+        self.info_type_box.pack(padx=5, pady=5, anchor=tk.W)
 
         self.user_name_label = tk.Label(self.data_frame, text="'Ονομα χρήστη")
         self.user_name_label.grid(row=0, column=0,padx=5, pady=5, sticky=tk.NW)
@@ -38,7 +47,7 @@ class InformationFrame(tk.Frame):
         
         self.customer_name_label = tk.Label(self.data_frame, text="'Ονομα Πελάτη")
         self.customer_name_label.grid(row=2, column=1, padx=5, pady=5, sticky=tk.NW)
-        self.customer_name_entry = tk.Entry(self.data_frame, width=30 )
+        self.customer_name_entry = tk.Entry(self.data_frame, width=30)
         self.customer_name_entry.grid(row=3, column=1, padx=5, pady=5, sticky=tk.NW)
 
         self.employee_name_label = tk.Label(self.data_frame, text= "'Ονομα υπαλλήλου")
@@ -63,8 +72,7 @@ class InformationFrame(tk.Frame):
         self.amount_entry.grid(row=5, column=2, padx=5, pady=5, sticky=tk.NW)
 
         self.data_frame.pack(padx=5, pady=5, fill=tk.X, anchor=tk.NW)
-
-
+        
         self.description_label = tk.Label(self, text = "Περιγραφή")
         self.description_label.pack(padx=5, pady=5, anchor=tk.NW)
 
