@@ -12,8 +12,6 @@ from jackpot_frame import JackpotFrame
 from cash_out_frame import CashoutFrame
 from roulette_calculator_frame import RouletteCalculatorFrame
 from information_frame import InformationFrame
-from information_given_frame import InformationGivenFrame
-from information_received_frame import InformationReceivedFrame
 # Αυτό είναι το πρώτο comment από το νέο laptop
 
 
@@ -41,8 +39,6 @@ def get_tab_idx_by_name(tabname):
     """
     Return the index of the given tab
     """
-
-
 
 if __name__ == '__main__':
     logger.warning('mainloop of app')

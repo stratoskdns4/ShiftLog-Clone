@@ -13,40 +13,51 @@ class JackpotFrame(tk.Frame):
         self.title_label = tk.Label(self, text="JACKPOT CALL", font=LABEL_FONT, justify=tk.LEFT)
         self.title_label.pack(padx=5, pady=5, anchor=tk.NW)
         
-        self.text_frame = tk.Frame(self)
+        self.data_frame = tk.Frame(self)
+        self.data_frame.columnconfigure(list(range(3)), weight=1)
+        self.data_frame.rowconfigure(list(range(6)), weight=1)
 
-        self.description_label = tk.Label(self.text_frame, text = "Περιγραφή")
+
+        self.amount_label = tk.Label(self.data_frame, text="Ποσό")
+        self.amount_label.grid(row=0, column=0, padx=5, pady=5, sticky=tk.NW)
+        self.amount_entry = tk.Entry(self.data_frame, width=30)
+        self.amount_entry.grid(row=1, column=0, padx=5, pady=5, sticky=tk.NW)
+
+        self.customer_name_label= tk.Label(self.data_frame, text="'Ονομα Πελάτη")
+        self.customer_name_label.grid(row=0, column=1, padx=5, pady=5, sticky=tk.NW)
+        self.customer_name_entry = tk.Entry(self.data_frame, width=30)
+        self.customer_name_entry.grid(row=1, column=1, padx=5, pady=5, sticky=tk.NW)
+
+        self.jackpot_time_label = tk.Label(self.data_frame, text="Jackpot Ώρα")
+        self.jackpot_time_label.grid(row=0, column=2, padx=5, pady=5, sticky=tk.NW)
+        self.jackpot_time_entry = tk.Entry(self.data_frame, width=30)
+        self.jackpot_time_entry.grid(row=1, column=2, padx=5, pady=5, sticky=tk.NW)
+
+        self.slot_machine_label= tk.Label(self.data_frame, text="Μηχάνημα")
+        self.slot_machine_label.grid(row=2, column=0, padx=5, pady=5, sticky=tk.NW)
+        self.slot_machine_entry = tk.Entry(self.data_frame, width=30)
+        self.slot_machine_entry.grid(row=3, column=0, padx=5, pady=5, sticky=tk.NW)
+
+        self.cash_desk_label = tk.Label(self.data_frame, text="Παράθυρο")
+        self.cash_desk_label.grid(row=2, column=1, padx=5, pady=5, sticky=tk.NW)
+        self.cash_desk_entry = tk.Entry(self.data_frame, width=30)
+        self.cash_desk_entry.grid(row=3, column=1, padx=5, pady=5, sticky=tk.NW)
+
+        self.employee_name_label = tk.Label(self.data_frame, text="Υπάλληλος")
+        self.employee_name_label.grid(row=2, column=2, padx=5, pady=5, sticky=tk.NW)
+        self.employee_name_entry = tk.Entry(self.data_frame, width=30)
+        self.employee_name_entry.grid(row=3, column=2, padx=5, pady=5, sticky=tk.NW)
+
+        self.data_frame.pack(fill=tk.X, padx=15, anchor=tk.NW)
+
+        self.description_label = tk.Label(self, text = "Περιγραφή")
         self.description_label.pack(padx=5, pady=5, anchor=tk.NW)
 
-        self.description_text = tk.Text(self.text_frame, width=30)
-        self.description_text.pack(fill=tk.BOTH, padx=5, pady=5)
-
+        self.description_text = tk.Text(self, width=30, height=2)
+        self.description_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=15, pady=5, anchor=tk.SE)
-
-        self.text_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=15, anchor=tk.NW)
-
-
-        self.amount_label = tk.Label(self, text="Ποσό")
-        self.amount_label.pack(padx=5, pady=5, anchor=tk.NW)
-        self.amount_entry = tk.Entry(self, width=30)
-        self.amount_entry.pack(padx=5, pady=5, anchor=tk.NW)
-
-        self.customer_name_label= tk.Label(self, text="'Ονομα Πελάτη")
-        self.customer_name_label.pack(padx=5, pady=5, anchor=tk.NW)
-        self.customer_name_entry = tk.Entry(self, width=30 )
-        self.customer_name_entry.pack(padx=5, pady=5, anchor=tk.NW)
-
-        self.jackpot_time_label = tk.Label(self, text="Jackpot Ώρα")
-        self.jackpot_time_label.pack(padx=5, pady=5, anchor=tk.NW)
-        self.jackpot_time_entry = tk.Entry(self, width=30)
-        self.jackpot_time_entry.pack(padx=5, pady=5, anchor=tk.NW)
-
-        self.slot_machine_label= tk.Label(self, text="Παράθυρο")
-        self.slot_machine_label.pack(padx=5, pady=5, anchor=tk.NW)
-        self.slot_machine_entry = tk.Entry(self, width=30)
-        self.slot_machine_entry.pack(padx=5, pady=5, anchor=tk.NW)
 
     
     def on_submit(self):
