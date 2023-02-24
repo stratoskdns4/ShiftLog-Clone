@@ -50,11 +50,11 @@ class JackpotFrame(tk.Frame):
 
         self.data_frame.pack(fill=tk.X, padx=15, anchor=tk.NW)
 
-        self.description_label = tk.Label(self, text = "Περιγραφή")
+        self.description_label = tk.Label(self, text="Περιγραφή")
         self.description_label.pack(padx=5, pady=5, anchor=tk.NW)
 
-        self.description_text = tk.Text(self, width=30, height=2)
-        self.description_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        self.description_text = tk.Text(self, width=30, height=5)
+        self.description_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
 
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=15, pady=5, anchor=tk.SE)

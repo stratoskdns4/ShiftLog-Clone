@@ -12,6 +12,7 @@ from jackpot_frame import JackpotFrame
 from cash_out_frame import CashoutFrame
 from roulette_calculator_frame import RouletteCalculatorFrame
 from information_frame import InformationFrame
+from watched_frame import WatchedFrame
 # Αυτό είναι το πρώτο comment από το νέο laptop
 
 
@@ -59,7 +60,8 @@ if __name__ == '__main__':
         'jackpot_call': JackpotFrame(notebook),
         'cashout_call': CashoutFrame(notebook),
         'roulette_calculator': RouletteCalculatorFrame(notebook),
-        'information': InformationFrame(notebook)
+        'information': InformationFrame(notebook),
+        'watched': WatchedFrame(notebook)
     }
 
     for k, v in pages.items():

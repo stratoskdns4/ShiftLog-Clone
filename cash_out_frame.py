@@ -27,12 +27,20 @@ class CashoutFrame(tk.Frame):
 
         self.text_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=15, anchor=tk.NW)
 
-
+        self.date_label = tk.Label(self, text="Ημερομηνία")
+        self.date_label.pack(padx=5, pady=5, anchor=tk.NW)
+        self.date_entry = tk.Entry(self, width=30)
+        self.date_entry.pack(padx=5, pady=5, anchor=tk.NW)
+        
         self.amount_label = tk.Label(self, text="Ποσό")
         self.amount_label.pack(padx=5, pady=5, anchor=tk.NW)
         self.amount_entry = tk.Entry(self, width=30)
         self.amount_entry.pack(padx=5, pady=5, anchor=tk.NW)
-        
+
+        self.employee_label = tk.Label(self, text='Όνομα Υπαλλήλου')
+        self.employee_label.pack(padx=5, pady=5, anchor=tk.NW)
+        self.employee_entry = tk.Entry(self, width=30)
+        self.employee_entry.pack(padx=5, pady=5, anchor=tk.NW)
 
         self.customer_name_label = tk.Label(self, text="'Ονομα Πελάτη")
         self.customer_name_label.pack(padx=5, pady=5, anchor=tk.NW)
@@ -51,6 +59,8 @@ class CashoutFrame(tk.Frame):
 
     def on_submit(self):
         cashout_data = {
+            'date':self.date_entry.get(),
+            'employee':self.employee_entry.get(),
             "window":self.cash_desk_window_entry.get(),
             "name":self.customer_name_entry.get(),
             "amount":float(self.amount_entry.get()),

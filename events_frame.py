@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter.messagebox import askyesno
 import sys
 from db import Event
+
+from edit_pop import EditPopFrame
 import logging
 
 logger = logging.getLogger(__name__)
@@ -22,8 +24,9 @@ class EventsFrame(tk.Frame):
         self.events_frame_scrollbar.config(command=self.events_frame.yview)
 
         self.events_frame.bind('<Delete>', self.on_delete)
+        self.events_frame.bind('e', self.on_edit)
         self.idx = 0
-        self.last_pk = None
+        self.last_pk = -1
         self.refresh()
         logger.debug('events frame initialised')
 
@@ -33,23 +36,36 @@ class EventsFrame(tk.Frame):
         We check the self.last_pk to see what the lowest ID is so we only query for records higher than that
         TODO: Fix
         """
-        fn=sys._getframe(1).f_code.co_name
-        logger.warning(f'focus called')
-        self.events_frame
+
+        self.events_frame.delete(0,tk.END)
+        # for elem in self.events_frame.children:
+        #     elem.destroy()
+        
         if self.last_pk:
-            events = self.get_new_records(self.last_pk)
+            events = self.get_new_records(0)
             for i, ev in enumerate(events):
                 self.update_last_pk(ev.pk)
                 evstr = self.format_event_string(ev)
                 self.events_frame.insert(0, evstr)
-        else:
-            self.events = self.get_last_n_events()
-            self.last_pk = 0
-            for i, ev in enumerate(self.events):
-                self.update_last_pk(ev.pk)
-                self.idx = i
-                evstr = self.format_event_string(ev)
-                self.events_frame.insert(tk.END, evstr)
+
+            
+        # fn=sys._getframe(1).f_code.co_name
+        # logger.warning(f'focus called')
+        # self.events_frame
+        # if self.last_pk:
+        #     events = self.get_new_records(self.last_pk)
+        #     for i, ev in enumerate(events):
+        #         self.update_last_pk(ev.pk)
+        #         evstr = self.format_event_string(ev)
+        #         self.events_frame.insert(0, evstr)
+        # else:
+        #     self.events = self.get_last_n_events()
+        #     self.last_pk = 0
+        #     for i, ev in enumerate(self.events):
+        #         self.update_last_pk(ev.pk)
+        #         self.idx = i
+        #         evstr = self.format_event_string(ev)
+        #         self.events_frame.insert(tk.END, evstr)
 
     def on_delete(self, event=None):
         selected = self.events_frame.curselection()
@@ -65,6 +81,26 @@ class EventsFrame(tk.Frame):
             Event.query.delete_one(sel_pk)
             self.events_frame.delete(selected[0])
             self.refresh()
+
+    def on_edit(self, event=None):
+        selected = self.events_frame.curselection()
+        if len(selected) != 1:
+            return
+        
+        sel_text = self.events_frame.get(selected[0])
+        sel_pk = int(sel_text[1:sel_text.find(']')])
+
+        event_object = Event.query.select("*").in_pk(sel_pk).one()
+
+        popup = tk.Toplevel()
+        popup.geometry("300x300")
+        popup.title("Edit")
+
+        edit_frame = EditPopFrame(popup, event_object)
+        edit_frame.pack(fill=tk.BOTH, expand=True)
+        
+        popup.bind("<Destroy>", lambda evt: self.refresh())
+        
 
     def update_last_pk(self, pk):
         if self.last_pk < pk:

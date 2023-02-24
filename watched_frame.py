@@ -3,25 +3,24 @@ from tkinter import ttk
 
 from constants import LABEL_FONT
 
-INFORMATION_TYPES = ("General Information", "Information Given", "Information Received")
+WATCHED_TYPES = ("General Surveillance", "Watched Staff", "Watched Players", "Player Profile", "Staff Profile", "΅Footage Review")
 
-class InformationFrame(tk.Frame):
+class WatchedFrame(tk.Frame):
 
     def __init__(self, root, **options):
         super().__init__(root, **options)
 
-        # Place your wigdets here
-        self.title_label = tk.Label(self, text="INFORMATION", font=LABEL_FONT, justify=tk.LEFT)
+        self.title_label = tk.Label(self, text="Watched", font=LABEL_FONT, justify=tk.LEFT)
         self.title_label.pack(padx=5, pady=5, anchor=tk.NW)
-        
+
         self.data_frame = tk.Frame(self)
         self.data_frame.columnconfigure(list(range(3)), weight=1)
         self.data_frame.rowconfigure(list(range(6)), weight=1)
 
-        self.info_type_label=tk.Label(self, text="Τύπος πληροφορίας")
+        self.info_type_label=tk.Label(self, text="Τύπος παρακολούθησης")
         self.info_type_label.pack(padx=5, pady=5, anchor=tk.W)
 
-        self.info_type_box = ttk.Combobox(self, values=INFORMATION_TYPES, state="readonly")
+        self.info_type_box = ttk.Combobox(self, values=WATCHED_TYPES, state="readonly")
         self.info_type_box.current(0)
         self.info_type_box.pack(padx=5, pady=5, anchor=tk.W)
 
@@ -60,7 +59,6 @@ class InformationFrame(tk.Frame):
         self.area_entry = tk.Entry(self.data_frame, width=30)
         self.area_entry.grid(row=5, column=0, padx=5, pady=5, sticky=tk.NW)
         
-        
         self.time_label = tk.Label(self.data_frame, text="Ώρα")
         self.time_label.grid(row=4, column=1, padx=5, pady=5, sticky=tk.NW)
         self.time_entry = tk.Entry(self.data_frame, width=30)
@@ -82,9 +80,8 @@ class InformationFrame(tk.Frame):
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=5, pady=5, anchor=tk.SE)
 
-
     def on_submit(self):
-        information_data = {
+        watched_data = {
             "user":self.user_name_entry.get(),
             "date":self.date_entry.get(),
             "time_call":self.time_call_entry.get(),
@@ -94,7 +91,7 @@ class InformationFrame(tk.Frame):
             "time":self.time_entry.get(),
             "amount":float(self.amount_entry.get()),
             "description":self.description_text.get("1.0", tk.END)
-        }
+            }
 
 
     def refresh(self):
@@ -105,5 +102,9 @@ class InformationFrame(tk.Frame):
 if __name__ == "__main__":
     from single_frame_runner import single_frame_runner
 
-    single_frame_runner(InformationFrame)
+    single_frame_runner(WatchedFrame)
 
+
+
+
+        
