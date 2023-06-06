@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
-from constants import LABEL_FONT
+from frames.constants import LABEL_FONT
 from logic import add_jackpot
 
 

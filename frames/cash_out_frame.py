@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter.messagebox import showinfo
 from logic import add_cashout
 
-from constants import LABEL_FONT
+from .constants import LABEL_FONT
 
 
 class CashoutFrame(tk.Frame):

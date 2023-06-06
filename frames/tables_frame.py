@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import random
 
-from constants import LABEL_FONT
+from .constants import LABEL_FONT
 
 GAME_TYPES = (
     "Blackjacjk", 

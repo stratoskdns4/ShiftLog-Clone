@@ -4,7 +4,7 @@ from tkinter.messagebox import showinfo, showerror
 from tkinter import filedialog as fd
 import json
 
-from constants import LABEL_FONT
+from .constants import LABEL_FONT
 
 from logic import add_event 
 

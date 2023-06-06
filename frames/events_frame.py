@@ -3,7 +3,7 @@ from tkinter.messagebox import askyesno
 import sys
 from db import Event
 
-from edit_pop import EditPopFrame
+from .edit_pop import EditPopFrame
 import logging
 
 logger = logging.getLogger(__name__)

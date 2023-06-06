@@ -3,7 +3,7 @@ from tkinter.messagebox import showerror
 from db import Event
 from prom import Error
 
-from constants import LABEL_FONT
+from .constants import LABEL_FONT
 
 
 class EditPopFrame(tk.Frame):
@@ -52,6 +52,7 @@ class EditPopFrame(tk.Frame):
             self.root.destroy()
         except Error as er:
             showerror("Σφάλμα", "Σφάλμα κατά την ενημέρωση της εγγραφής")
+
 
 
 

@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from constants import LABEL_FONT
+from .constants import LABEL_FONT
 
 
 class RouletteCalculatorFrame(tk.Frame):

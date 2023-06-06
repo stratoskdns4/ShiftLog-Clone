@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import os
 
-from constants import LABEL_FONT, ENTRY_FONT
+from .constants import LABEL_FONT, ENTRY_FONT
 
 
 class SingleChipFrame(tk.Frame):

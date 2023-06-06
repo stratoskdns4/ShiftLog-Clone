@@ -65,6 +65,25 @@ def add_event( ev_dict:dict={})->str:
     # Save our changes
     return res
 
+def add_break( ev_dict:dict={})->str:
+    # Here we can check the validity of the data before committing
+    logger.warning(f'---- adding event ----')
+    timestamp = datetime.datetime.now()
+    logger.warning(f'timestamp: {timestamp}, {ev_dict}')
+    payload = {
+            'event_timestamp': ev_dict['event_timestamp'], 
+            'employee_name':ev_dict['employee_name'], 
+            'event_description': "BREAK EVENT: " + ev_dict['event_description'], 
+            'event_result':ev_dict['event_result']
+            }
+    # Create our record
+    res=None
+    try:
+        res=Event.create(**payload)
+    except Exception as e:
+        logger.error(f'Error saving out: {e}')
+    # Save our changes
+    return res
 
 def add_jackpot(jackpot_data):
     description = "{} {} €{:.2f}  {}".format(

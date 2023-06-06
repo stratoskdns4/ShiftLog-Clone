@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from constants import LABEL_FONT
+from .constants import LABEL_FONT
 
 WATCHED_TYPES = ("General Surveillance", "Watched Staff", "Watched Players", "Player Profile", "Staff Profile", "΅Footage Review")
 

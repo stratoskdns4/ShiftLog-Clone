@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
-from single_chip_frame import SingleChipFrame
-from constants import LABEL_FONT
+from .single_chip_frame import SingleChipFrame
+from .constants import LABEL_FONT
 
 CHIP_VALUES = [5000, 1000, 500, 100, 25, 10, 5, 2.5] #, 1.25]
 

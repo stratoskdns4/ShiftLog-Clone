@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from constants import LABEL_FONT
-
+from .constants import LABEL_FONT
 
 COLUMN_NAMES = ("Κωδικός", "Επώνυμο", "Όνομα", "Ιδιότητα")
 
