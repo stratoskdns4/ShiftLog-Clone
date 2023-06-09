@@ -6,7 +6,7 @@ import datetime
 
 from logic import add_break
 
-from frames.constants import LABEL_FONT
+from .constants import LABEL_FONT
 
 INFORMATION_TYPES = ("Βγήκα για διάλειμμα", "Γύρισα από διάλειμμα", 'Βγήκα για τσιγάρο', 'Γύρισα από τσιγάρο')
 
