@@ -3,12 +3,12 @@ from tkinter import ttk
 
 from .constants import LABEL_FONT
 
+from login_controller import LoginController
 
 class LoginFrame(tk.Frame):
 
-    def __init__(self, root, do_login, **options):
+    def __init__(self, root, **options):
         super().__init__(root, **options)
-        self.do_login = do_login
         
         self.title_label = tk.Label(self, text="Σύνδεση", font=LABEL_FONT)
         self.title_label.pack(fill=tk.X, pady=10, padx=5)
@@ -36,7 +36,8 @@ class LoginFrame(tk.Frame):
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        result = self.do_login(username, password)
+        # result = self.do_login(username, password)
+        result = LoginController().do_login(username, password)
         if not result:
             self.show_error_message("Λάθος username η password!")
 

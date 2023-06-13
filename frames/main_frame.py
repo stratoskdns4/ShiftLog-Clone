@@ -15,9 +15,9 @@ from .watched_frame import WatchedFrame
 from .plot_frame import PlotFrame
 from .breaks_frame import BreaksFrame
 
-
 from applog import setup_logging
 
+from login_controller import LoginController
 logger = setup_logging()
 
 
@@ -30,6 +30,16 @@ class MainFrame(tk.Frame):
         self.notebook = ttk.Notebook(self)
         self.notebook.pack(fill=tk.BOTH, expand=True)
         self.notebook.bind('<<NotebookTabChanged>>', self.on_tab_change)
+
+        username = LoginController().get_logged_in_user()
+        self.status_bar = tk.Frame(self)
+        self.status_label = tk.Label(self, text=f"Logged in as {username}")
+        self.status_label.pack(side=tk.LEFT, anchor=tk.W)
+
+       
+        self.logout_button = tk.Button(self, text='Αποσύνδεση', command=LoginController().do_logout)
+        self.logout_button.pack(side=tk.RIGHT)
+        self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
 
         self.pages = {
             'register': RegisterEventFrame(self.notebook),

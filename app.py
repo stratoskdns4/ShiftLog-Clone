@@ -6,15 +6,11 @@ from applog import setup_logging
 from frames.main_frame import MainFrame
 from frames.login_frame import LoginFrame
 
-
+from login_controller import LoginController
 
 
 logger = setup_logging()
 logger.debug('app.py: STARTING')
-
-
-
-
 
 
 if __name__ == '__main__':
@@ -22,19 +18,26 @@ if __name__ == '__main__':
     window = tk.Tk()
     window.title("Καταγραφη!")
     window.geometry("850x550")
-
-    def do_login(username, password):
-        if username == 'Stratos' and password == '1234':
-            print('Succesfull')
-            login_frame.destroy()
-            main_frame.pack(fill=tk.BOTH, expand=True)
-            return True
-        else:
-            return False
-
-    main_frame = MainFrame(window)
-    login_frame = LoginFrame(window, do_login)
-
-    login_frame.pack(anchor=tk.CENTER, expand=True)
     
+    main_frame = None
+    login_frame = None
+
+    def go_to_main_view():
+        global main_frame
+        if login_frame is not None:
+            login_frame.destroy()
+        main_frame = MainFrame(window)
+        main_frame.pack(fill=tk.BOTH, expand=True)
+
+    def go_to_login_view():
+        global login_frame
+        if main_frame is not None:
+            main_frame.destroy()
+        login_frame = LoginFrame(window)
+        login_frame.pack(anchor=tk.CENTER, expand=True)
+
+
+    go_to_login_view()
+    lc = LoginController(go_to_main_view, go_to_login_view)
+
     window.mainloop()

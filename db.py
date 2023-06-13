@@ -7,8 +7,6 @@ from prom import Orm, Field, Index, Query
 import prom
 prom.configure('sqlite://db.sqlite')
 
-
-
 class Qry(Query):
     """
     Query class
@@ -39,18 +37,21 @@ class Event(Orm):
     event_result = Field(str, max_size=512)
 
 
-class Person(Orm):
+class User(Orm):
     """
     Store a person here if you want. Unused at the moment
     We would define the employee in events table to be a foreign key into this table's primary key
     All tables get a 'pk' field
     """
-    table_name = 'person'
-    surname = Field(str)
+    table_name = 'user'
+    username = Field(str)
+    password = Field(str)
     forename = Field(str)
     is_staff = Field(bool)
     # etc.
 
+# Create users with
+# User.create(username='test', password='1234')
 
 if __name__ == '__main__':
     print('We should be called as a module!')
