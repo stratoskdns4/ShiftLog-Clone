@@ -18,7 +18,7 @@ class EventsFrame(tk.Frame):
 
         self.events_frame = tk.Listbox(self)
         self.events_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        self.events_frame_scrollbar = tk.Scrollbar(root)
+        self.events_frame_scrollbar = tk.Scrollbar(self)
         self.events_frame_scrollbar.pack(side=tk.RIGHT, fill=tk.BOTH)
         self.events_frame.config(yscrollcommand=self.events_frame_scrollbar.set)
         self.events_frame_scrollbar.config(command=self.events_frame.yview)
