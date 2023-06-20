@@ -8,6 +8,8 @@ from logic import add_break
 from login_controller import LoginController
 from .constants import LABEL_FONT
 
+from .util_components import UsernameEntry, HourEntry, DateEntry
+
 INFORMATION_TYPES = ("Βγήκα για διάλειμμα", "Γύρισα από διάλειμμα", 'Βγήκα για τσιγάρο', 'Γύρισα από τσιγάρο')
 
 class BreaksFrame(tk.Frame):
@@ -32,18 +34,21 @@ class BreaksFrame(tk.Frame):
 
         self.user_name_label = tk.Label(self.data_frame, text="'Ονομα χρήστη")
         self.user_name_label.grid(row=0, column=0,padx=5, pady=5, sticky=tk.NW)
-        self.user_name_entry = tk.Entry(self.data_frame, width=30)
-        self.user_name_entry.insert(0, LoginController().get_logged_in_user())
+       
+
+        self.user_name_entry = UsernameEntry(self.data_frame, width=30)
         self.user_name_entry.grid(row=1, column=0, padx=5, pady=5, sticky=tk.NW)
+
 
         self.date_label = tk.Label(self.data_frame, text="Ημερομηνία")
         self.date_label.grid(row=0, column=1,padx=5, pady=5, sticky=tk.NW)
-        self.date_entry = tk.Entry(self.data_frame, width=30)
+        
+        self.date_entry = DateEntry(self.data_frame, width=30)
         self.date_entry.grid(row=1, column=1, padx=5, pady=5, sticky=tk.NW)
 
         self.time_label = tk.Label(self.data_frame, text="Ώρα")
         self.time_label.grid(row=4, column=1, padx=5, pady=5, sticky=tk.NW)
-        self.time_entry = tk.Entry(self.data_frame, width=30)
+        self.time_entry = HourEntry(self.data_frame, width=30)
         self.time_entry.grid(row=5, column=1, padx=5, pady=5, sticky=tk.NW)
 
         
@@ -82,13 +87,7 @@ class BreaksFrame(tk.Frame):
 
     def refresh(self):
         """On re-render hook"""
-        now = datetime.datetime.now()
-        self.date_entry.delete(0, tk.END)
-        self.date_entry.insert(0, now.strftime("%d/%m/%Y"))
-
-        self.time_entry.delete(0, tk.END)
-        self.time_entry.insert(0, now.strftime("%H:%M"))
-
+        
 
 # Use this to test your frame as a single app
 if __name__ == "__main__":

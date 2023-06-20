@@ -3,6 +3,8 @@ from tkinter import ttk
 
 from .constants import LABEL_FONT
 
+from .util_components import UsernameEntry, DateEntry, HourEntry
+
 INFORMATION_TYPES = ("General Information", "Information Given", "Information Received")
 
 class InformationFrame(tk.Frame):
@@ -27,17 +29,17 @@ class InformationFrame(tk.Frame):
 
         self.user_name_label = tk.Label(self.data_frame, text="'Ονομα χρήστη")
         self.user_name_label.grid(row=0, column=0,padx=5, pady=5, sticky=tk.NW)
-        self.user_name_entry = tk.Entry(self.data_frame, width=30)
+        self.user_name_entry = UsernameEntry(self.data_frame, width=30)
         self.user_name_entry.grid(row=1, column=0, padx=5, pady=5, sticky=tk.NW)
 
         self.date_label = tk.Label(self.data_frame, text="Ημερομηνία")
         self.date_label.grid(row=0, column=1,padx=5, pady=5, sticky=tk.NW)
-        self.date_entry = tk.Entry(self.data_frame, width=30)
+        self.date_entry = DateEntry(self.data_frame, width=30)
         self.date_entry.grid(row=1, column=1, padx=5, pady=5, sticky=tk.NW)
 
         self.time_call_label = tk.Label(self.data_frame, text="'Ωρα πληροφορίας")
         self.time_call_label.grid(row=0, column=2, padx=5, pady=5, sticky=tk.NW)
-        self.time_call_entry = tk.Entry(self.data_frame, width=30)
+        self.time_call_entry = HourEntry(self.data_frame, width=30)
         self.time_call_entry.grid(row=1, column=2, padx=5, pady=5, sticky=tk.NW)
 
         self.reason_label = tk.Label(self.data_frame, text="Λόγος τηλεφωνήματος")

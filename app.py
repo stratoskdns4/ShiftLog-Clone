@@ -8,16 +8,26 @@ from frames.login_frame import LoginFrame
 
 from login_controller import LoginController
 
+DEBUG = True
 
 logger = setup_logging()
 logger.debug('app.py: STARTING')
 
 
 if __name__ == '__main__':
+    import os
+
+    # fix dpi issues on windows
+    if os.name == 'nt':
+        from ctypes import windll
+        windll.shcore.SetProcessDpiAwareness(1)
+
     logger.warning('mainloop of app')
     window = tk.Tk()
     window.title("Καταγραφη!")
-    window.geometry("850x550")
+    window.geometry("1200x700")
+
+    # window.tk.call('tk', 'scaling', 2.0)
     
     main_frame = None
     login_frame = None
@@ -39,5 +49,8 @@ if __name__ == '__main__':
 
     go_to_login_view()
     lc = LoginController(go_to_main_view, go_to_login_view)
+
+    if DEBUG:
+        lc.do_login('aaaa', 'bbbb')
 
     window.mainloop()

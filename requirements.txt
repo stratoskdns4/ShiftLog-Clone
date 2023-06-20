@@ -2,3 +2,4 @@ datatypes==0.2.6
 decorators==2.0.7
 dsnparse==0.1.15
 prom==3.1.0
+tkcalendar

@@ -3,6 +3,8 @@ from tkinter import ttk
 from tkinter.messagebox import showinfo
 from frames.constants import LABEL_FONT
 from logic import add_jackpot
+from .util_components import HourEntry
+from .util_components import UsernameEntry
 
 
 class JackpotFrame(tk.Frame):
@@ -30,7 +32,7 @@ class JackpotFrame(tk.Frame):
 
         self.jackpot_time_label = tk.Label(self.data_frame, text="Jackpot Ώρα")
         self.jackpot_time_label.grid(row=0, column=2, padx=5, pady=5, sticky=tk.NW)
-        self.jackpot_time_entry = tk.Entry(self.data_frame, width=30)
+        self.jackpot_time_entry = HourEntry(self.data_frame, width=30)
         self.jackpot_time_entry.grid(row=1, column=2, padx=5, pady=5, sticky=tk.NW)
 
         self.slot_machine_label= tk.Label(self.data_frame, text="Μηχάνημα")
@@ -45,7 +47,7 @@ class JackpotFrame(tk.Frame):
 
         self.employee_name_label = tk.Label(self.data_frame, text="Υπάλληλος")
         self.employee_name_label.grid(row=2, column=2, padx=5, pady=5, sticky=tk.NW)
-        self.employee_name_entry = tk.Entry(self.data_frame, width=30)
+        self.employee_name_entry = UsernameEntry(self.data_frame, width=30)
         self.employee_name_entry.grid(row=3, column=2, padx=5, pady=5, sticky=tk.NW)
 
         self.data_frame.pack(fill=tk.X, padx=15, anchor=tk.NW)

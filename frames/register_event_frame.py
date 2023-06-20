@@ -7,6 +7,7 @@ import json
 from .constants import LABEL_FONT
 
 from logic import add_event 
+from .util_components import UsernameEntry
 
 RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
 
@@ -24,7 +25,7 @@ class RegisterEventFrame(tk.Frame):
         self.employee_label = tk.Label(self, text="Όνομα εργαζομένου", anchor=tk.W)
         self.employee_label.pack(fill=tk.X, pady=10, padx=5)
 
-        self.employee_entry = tk.Entry(self, width=30)
+        self.employee_entry = UsernameEntry(self, width=30)
         self.employee_entry.pack(anchor=tk.W, padx=5)
 
         # Κατασκευάζω μια περιοχή (Frame), στην οποία θα τοποθετήσω
