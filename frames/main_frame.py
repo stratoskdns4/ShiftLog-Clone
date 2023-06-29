@@ -27,19 +27,21 @@ class MainFrame(tk.Frame):
         super().__init__(root, **options)
         self.pages = dict()
 
+       
+        username = LoginController().get_logged_in_user()
+        self.status_bar = tk.Frame(self)
+        self.status_label = tk.Label(self.status_bar, text=f"Logged in as {username}")
+        self.status_label.pack(side=tk.LEFT, anchor=tk.W)
+
+       
+        self.logout_button = tk.Button(self.status_bar, text='Αποσύνδεση', command=LoginController().do_logout)
+        self.logout_button.pack(side=tk.RIGHT)
+        self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
+
         self.notebook = ttk.Notebook(self)
         self.notebook.pack(fill=tk.BOTH, expand=True)
         self.notebook.bind('<<NotebookTabChanged>>', self.on_tab_change)
 
-        username = LoginController().get_logged_in_user()
-        self.status_bar = tk.Frame(self)
-        self.status_label = tk.Label(self, text=f"Logged in as {username}")
-        self.status_label.pack(side=tk.LEFT, anchor=tk.W)
-
-       
-        self.logout_button = tk.Button(self, text='Αποσύνδεση', command=LoginController().do_logout)
-        self.logout_button.pack(side=tk.RIGHT)
-        self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
 
         self.pages = {
             'register': RegisterEventFrame(self.notebook),
