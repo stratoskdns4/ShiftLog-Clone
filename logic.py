@@ -4,7 +4,7 @@ import os.path
 import os
 
 import logging
-from db import Event
+from db import Event, User
 
 # Ορίζουμε το τρέχον φάκελο ως το φάκελο στον οποίο βρίσκεται αυτό το αρχείο
 os.chdir(os.path.dirname(__file__))
@@ -19,6 +19,10 @@ def list_events()->list:
     logger.warning(f'Results from query: {str(res)}')
     
     return res
+
+def get_staff():
+    staff = User.query.select("pk", "username", "forename").all()
+    return staff
 
 def save_event(event_dict:dict={}, filepath:str='logs') -> bool:
     """

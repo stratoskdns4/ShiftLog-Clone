@@ -3,6 +3,7 @@ from tkinter import ttk
 
 from .constants import LABEL_FONT
 
+from logic import get_staff
 COLUMN_NAMES = ("Κωδικός", "Επώνυμο", "Όνομα", "Ιδιότητα")
 
 class PersonelFrame(tk.Frame):
@@ -23,7 +24,12 @@ class PersonelFrame(tk.Frame):
         self.personel_treeview.pack(fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
 
 
-
+    def refresh(self):
+        staff = get_staff()
+        
+        self.personel_treeview.delete(*self.personel_treeview.get_children())
+        for employee in staff:
+            self.personel_treeview.insert(parent='', index=tk.END, id=employee[0], values=employee)
 
 if __name__ == "__main__":
     from single_frame_runner import single_frame_runner
