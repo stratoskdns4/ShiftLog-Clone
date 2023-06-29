@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter.messagebox import showinfo
 from logic import add_cashout
+from .util_components import UsernameEntry, DateEntry, HourEntry
 
 from .constants import LABEL_FONT
 
@@ -29,8 +30,13 @@ class CashoutFrame(tk.Frame):
 
         self.date_label = tk.Label(self, text="Ημερομηνία")
         self.date_label.pack(padx=5, pady=5, anchor=tk.NW)
-        self.date_entry = tk.Entry(self, width=30)
+        self.date_entry = DateEntry(self, width=30)
         self.date_entry.pack(padx=5, pady=5, anchor=tk.NW)
+
+        self.cashout_time_label = tk.Label(self, text="Cashout Ώρα")
+        self.cashout_time_label.pack(padx=5, pady=5, anchor=tk.NW)
+        self.cashout_time_entry = HourEntry(self, width=30)
+        self.cashout_time_entry.pack(padx=5, pady=5, anchor=tk.NW)
         
         self.amount_label = tk.Label(self, text="Ποσό")
         self.amount_label.pack(padx=5, pady=5, anchor=tk.NW)
@@ -39,7 +45,7 @@ class CashoutFrame(tk.Frame):
 
         self.employee_label = tk.Label(self, text='Όνομα Υπαλλήλου')
         self.employee_label.pack(padx=5, pady=5, anchor=tk.NW)
-        self.employee_entry = tk.Entry(self, width=30)
+        self.employee_entry = UsernameEntry(self, width=30)
         self.employee_entry.pack(padx=5, pady=5, anchor=tk.NW)
 
         self.customer_name_label = tk.Label(self, text="'Ονομα Πελάτη")
@@ -47,10 +53,7 @@ class CashoutFrame(tk.Frame):
         self.customer_name_entry = tk.Entry(self, width=30 )
         self.customer_name_entry.pack(padx=5, pady=5, anchor=tk.NW)
 
-        self.cashout_time_label = tk.Label(self, text="Cashout Ώρα")
-        self.cashout_time_label.pack(padx=5, pady=5, anchor=tk.NW)
-        self.cashout_time_entry = tk.Entry(self, width=30)
-        self.cashout_time_entry.pack(padx=5, pady=5, anchor=tk.NW)
+       
 
         self.cash_desk_window_label = tk.Label(self, text="Παράθυρο")
         self.cash_desk_window_label.pack(padx=5, pady=5, anchor=tk.NW)

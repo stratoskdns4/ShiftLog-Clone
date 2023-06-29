@@ -8,23 +8,37 @@ from .constants import LABEL_FONT
 
 from logic import add_event 
 from .util_components import UsernameEntry
+from .util_components import HourEntry
+from .util_components import DateEntry
 
 RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
+# VIEW_OPTS = {'bg': 'lightblue'}
 
 class RegisterEventFrame(tk.Frame):
 
     def __init__(self, root, **options):
         super().__init__(root, **options)
-
+        self.config()
         self.opened_filepath = None
 
         self.my_label = tk.Label(self, text="Καταγραφη Γεγονότος", font=LABEL_FONT, anchor=tk.W)
         self.my_label.pack(fill=tk.X, pady=10, padx=5)
 
         # Πεδίο εισαγωγης ονόματος υπαλήλου
+        self.date_label = tk.Label(self, text='Ημερομηνία', anchor=tk.W)
+        self.date_label.pack(fill=tk.X, pady=10, padx=5)
+        self.date_entry = DateEntry(self, width=30)
+        self.date_entry.pack(anchor=tk.W, padx=5)
+        
+
+        self.time_label = tk.Label(self, text='Ώρα', anchor=tk.W)
+        self.time_label.pack(fill=tk.X, pady=10, padx=5)
+        self.time_entry = HourEntry(self, width=30)
+        self.time_entry.pack(anchor=tk.W, padx=5)
+        
+
         self.employee_label = tk.Label(self, text="Όνομα εργαζομένου", anchor=tk.W)
         self.employee_label.pack(fill=tk.X, pady=10, padx=5)
-
         self.employee_entry = UsernameEntry(self, width=30)
         self.employee_entry.pack(anchor=tk.W, padx=5)
 

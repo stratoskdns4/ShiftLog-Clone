@@ -65,7 +65,7 @@ class InformationFrame(tk.Frame):
         
         self.time_label = tk.Label(self.data_frame, text="Ώρα")
         self.time_label.grid(row=4, column=1, padx=5, pady=5, sticky=tk.NW)
-        self.time_entry = tk.Entry(self.data_frame, width=30)
+        self.time_entry = HourEntry(self.data_frame, width=30)
         self.time_entry.grid(row=5, column=1, padx=5, pady=5, sticky=tk.NW)
 
         self.amount_label = tk.Label(self.data_frame, text="Ποσό")

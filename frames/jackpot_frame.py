@@ -5,6 +5,7 @@ from frames.constants import LABEL_FONT
 from logic import add_jackpot
 from .util_components import HourEntry
 from .util_components import UsernameEntry
+from .util_components import DateEntry
 
 
 class JackpotFrame(tk.Frame):
@@ -49,6 +50,12 @@ class JackpotFrame(tk.Frame):
         self.employee_name_label.grid(row=2, column=2, padx=5, pady=5, sticky=tk.NW)
         self.employee_name_entry = UsernameEntry(self.data_frame, width=30)
         self.employee_name_entry.grid(row=3, column=2, padx=5, pady=5, sticky=tk.NW)
+
+        self.date_label = tk.Label(self.data_frame, text="Ημερομηνία")
+        self.date_label.grid(row=2, column=4, padx=5, pady=5, sticky=tk.NW)
+        self.date_entry = DateEntry(self.data_frame, width=30)
+        self.date_entry.grid(row=3, column=4, padx=5, pady=5, sticky=tk.NW)
+
 
         self.data_frame.pack(fill=tk.X, padx=15, anchor=tk.NW)
 
