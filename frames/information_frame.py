@@ -5,6 +5,20 @@ from .constants import LABEL_FONT
 
 from .util_components import UsernameEntry, DateEntry, HourEntry
 
+from .change_style import change_style
+
+theme = {
+    "font-color": "black",
+    "empty-background" : {
+        'bg':'lightblue'
+    },
+    "filled-background": {
+        'bg': 'white',
+        'fg': 'black'
+    }
+}
+
+
 INFORMATION_TYPES = ("General Information", "Information Given", "Information Received")
 
 class InformationFrame(tk.Frame):
@@ -15,6 +29,7 @@ class InformationFrame(tk.Frame):
         # Place your wigdets here
         self.title_label = tk.Label(self, text="INFORMATION", font=LABEL_FONT, justify=tk.LEFT)
         self.title_label.pack(padx=5, pady=5, anchor=tk.NW)
+        self.config(bg='lightblue')
         
         self.data_frame = tk.Frame(self)
         self.data_frame.columnconfigure(list(range(3)), weight=1)
@@ -83,6 +98,8 @@ class InformationFrame(tk.Frame):
 
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=5, pady=5, anchor=tk.SE)
+
+        change_style(self, theme)
 
 
     def on_submit(self):

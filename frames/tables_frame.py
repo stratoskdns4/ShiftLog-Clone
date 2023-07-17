@@ -3,6 +3,18 @@ from tkinter import ttk
 import random
 
 from .constants import LABEL_FONT
+from .change_style import change_style
+
+theme = {
+    "font-color": "black",
+    "empty-background" : {
+        'bg':'#F4E0B9'
+    },
+    "filled-background": {
+        'bg': 'white',
+        'fg': 'black'
+    }
+}
 
 GAME_TYPES = (
     "Blackjacjk", 
@@ -126,6 +138,7 @@ class TablesFrame(tk.Frame):
 
         self.title_label = tk.Label(self, text="Τραπέζια", font=LABEL_FONT)
         self.title_label.grid(row=0, column=0, padx=10, pady=10, sticky=tk.NW)
+        self.config(bg='#F4E0B9')
 
         self.tables_treeview = ttk.Treeview(self, columns=self.COLUMN_NAMES)
 
@@ -149,6 +162,8 @@ class TablesFrame(tk.Frame):
 
         self.create_table_frame = TableCreateFrame(self, table_add_func=self.add_table)
         self.create_table_frame.grid(row=2, column=1, sticky=tk.NSEW)
+
+        change_style(self, theme)
 
     def on_mouse_click(self, event):
         selected = self.tables_treeview.selection()

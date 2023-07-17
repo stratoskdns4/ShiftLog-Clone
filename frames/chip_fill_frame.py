@@ -2,7 +2,20 @@ import tkinter as tk
 from tkinter import ttk
 
 from .single_chip_frame import SingleChipFrame
+
 from .constants import LABEL_FONT
+from .change_style import change_style
+
+theme = {
+    "font-color": "black",
+    "empty-background" : {
+        'bg':'brown'
+    },
+    "filled-background": {
+        'bg': '#eda682',
+        'fg': 'black'
+    }
+}
 
 CHIP_VALUES = [5000, 1000, 500, 100, 25, 10, 5, 2.5] #, 1.25]
 
@@ -37,7 +50,12 @@ class ChipFillFrame(tk.Frame):
         self.reset_button = tk.Button(self, text="Επαναφορά", command=self.reset_all_counts)
         self.reset_button.grid(row=self.N_ROWS-1, column=0)
 
+        change_style(self, theme)
+        
+
         self.update_label()
+
+      
 
 
     def update_label(self, *args):

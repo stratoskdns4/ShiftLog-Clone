@@ -10,15 +10,28 @@ from logic import add_event
 from .util_components import UsernameEntry
 from .util_components import HourEntry
 from .util_components import DateEntry
+from .change_style import change_style
+
+from third_party.tk_rich_editor import create_text_editor
 
 RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
 # VIEW_OPTS = {'bg': 'lightblue'}
+theme = {
+    "font-color": "black",
+    "empty-background" : {
+        'bg':'lightblue'
+    },
+    "filled-background": {
+        'bg': 'white',
+        'fg': 'black'
+    }
+}
+
 
 class RegisterEventFrame(tk.Frame):
 
     def __init__(self, root, **options):
         super().__init__(root, **options)
-        self.config()
         self.opened_filepath = None
 
         self.my_label = tk.Label(self, text="Καταγραφη Γεγονότος", font=LABEL_FONT, anchor=tk.W)
@@ -71,8 +84,11 @@ class RegisterEventFrame(tk.Frame):
         self.result_label = tk.Label(self, text="Απόφαση", anchor=tk.W)
         self.result_label.pack(side=tk.BOTTOM, fill=tk.X, pady=10, padx=5)
 
-        self.description_text = tk.Text(self)
+        # self.description_text = tk.Text(self)
+        self.description_text = create_text_editor(self)
         self.description_text.pack(fill=tk.BOTH, expand=True, padx=5)
+
+        change_style(self, theme)
 
     def clear_all(self):
         """

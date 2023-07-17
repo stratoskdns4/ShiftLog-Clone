@@ -7,6 +7,18 @@ from .util_components import HourEntry
 from .util_components import UsernameEntry
 from .util_components import DateEntry
 
+from .change_style import change_style
+
+theme = {
+    "font-color": "black",
+    "empty-background" : {
+        'bg':'lightblue'
+    },
+    "filled-background": {
+        'bg': 'white',
+        'fg': 'black'
+    }
+}
 
 class JackpotFrame(tk.Frame):
 
@@ -15,6 +27,7 @@ class JackpotFrame(tk.Frame):
 
         self.title_label = tk.Label(self, text="JACKPOT CALL", font=LABEL_FONT, justify=tk.LEFT)
         self.title_label.pack(padx=5, pady=5, anchor=tk.NW)
+        self.config(bg='lightblue')
         
         self.data_frame = tk.Frame(self)
         self.data_frame.columnconfigure(list(range(3)), weight=1)
@@ -68,6 +81,7 @@ class JackpotFrame(tk.Frame):
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=15, pady=5, anchor=tk.SE)
 
+        change_style(self, theme)
     
     def on_submit(self):
         jackpot_data = {

@@ -2,8 +2,20 @@ import tkinter as tk
 from tkinter.messagebox import showinfo
 from logic import add_cashout
 from .util_components import UsernameEntry, DateEntry, HourEntry
+from .change_style import change_style
 
 from .constants import LABEL_FONT
+
+theme = {
+    "font-color": "black",
+    "empty-background" : {
+        'bg':'brown'
+    },
+    "filled-background": {
+        'bg': '#eda682',
+        'fg': 'black'
+    }
+}
 
 
 class CashoutFrame(tk.Frame):
@@ -12,8 +24,9 @@ class CashoutFrame(tk.Frame):
         super().__init__(root, **options)
 
         
-        self.title_label = tk.Label(self, text="CASHOUT", font=LABEL_FONT, justify=tk.LEFT)
+        self.title_label = tk.Label(self, text="CASHOUT", font=LABEL_FONT, justify=tk.LEFT, bg='brown')
         self.title_label.pack(padx=5, pady=5, anchor=tk.NW)
+        # self.config(bg='brown')
         
         self.text_frame = tk.Frame(self)
 
@@ -59,6 +72,8 @@ class CashoutFrame(tk.Frame):
         self.cash_desk_window_label.pack(padx=5, pady=5, anchor=tk.NW)
         self.cash_desk_window_entry = tk.Entry(self, width=30)
         self.cash_desk_window_entry.pack(padx=5, pady=5, anchor=tk.NW)
+
+        change_style(self, theme)
 
     def on_submit(self):
         cashout_data = {
