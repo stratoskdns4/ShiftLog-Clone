@@ -7,6 +7,8 @@ from .util_components import UsernameEntry, DateEntry, HourEntry
 
 from .change_style import change_style
 
+from third_party.tk_rich_editor import RichTextEditor
+
 theme = {
     "font-color": "black",
     "empty-background" : {
@@ -93,7 +95,7 @@ class InformationFrame(tk.Frame):
         self.description_label = tk.Label(self, text = "Περιγραφή")
         self.description_label.pack(padx=5, pady=5, anchor=tk.NW)
 
-        self.description_text = tk.Text(self, width=30, height=5)
+        self.description_text = RichTextEditor(self, width=30, height=5)
         self.description_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
 
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
@@ -112,12 +114,17 @@ class InformationFrame(tk.Frame):
             "name":self.employee_name_entry.get(),
             "time":self.time_entry.get(),
             "amount":float(self.amount_entry.get()),
-            "description":self.description_text.get("1.0", tk.END)
+            "description":self.description_text.get_text_widget().get("1.0", tk.END)
         }
 
 
     def refresh(self):
         """On re-render hook"""
+        
+        self.description_text.destroy()
+        self.description_text = RichTextEditor(self, width=30, height=5)
+        self.description_text.pack(after=self.description_label, fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
+        change_style(self, theme)
 
 
 # Use this to test your frame as a single app

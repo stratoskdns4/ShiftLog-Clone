@@ -1,4 +1,5 @@
-from ._main import create_text_editor
+from ._main_class import RichTextEditor
 
 
-__all__ = ['create_text_editor']
+
+__all__ = ['RichTextEditor']

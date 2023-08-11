@@ -47,7 +47,7 @@ class MainFrame(tk.Frame):
             'register': RegisterEventFrame(self.notebook),
             'breaks': BreaksFrame(self.notebook),
             'tables': TablesFrame(self.notebook),
-            'chip fill': ChipFillFrame(self.notebook),
+            'chip_fill': ChipFillFrame(self.notebook),
             'personnel': PersonelFrame(self.notebook),
             'events': EventsFrame(self.notebook),
             'jackpot_call': JackpotFrame(self.notebook),
@@ -71,14 +71,15 @@ class MainFrame(tk.Frame):
         """
         idx = self.notebook.index(self.notebook.select())
         r = self.notebook.tab(idx)
-        rtext = r['text'].lower()
+        rtext = r['text'].replace(' ', '_').lower()
 
         # rtext here is the key in the pages array
         # If we cared, we would put a focus method in all classes
         try:
+            
             self.pages[rtext].refresh()
         except Exception as e:
-            logger.warning(f'exception calling refresh! {e}')
+            logger.warning(f'exception calling refresh! {type(e)} {e}')
 
     def get_tab_idx_by_name(self, tabname):
         """

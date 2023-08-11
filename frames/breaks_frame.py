@@ -9,6 +9,7 @@ from login_controller import LoginController
 from .constants import LABEL_FONT
 
 from .util_components import UsernameEntry, HourEntry, DateEntry
+from third_party.tk_rich_editor import RichTextEditor
 
 INFORMATION_TYPES = ("Βγήκα για διάλειμμα", "Γύρισα από διάλειμμα", 'Βγήκα για τσιγάρο', 'Γύρισα από τσιγάρο')
 
@@ -57,12 +58,18 @@ class BreaksFrame(tk.Frame):
         self.description_label = tk.Label(self, text = "Περιγραφή")
         self.description_label.pack(padx=5, pady=5, anchor=tk.NW)
 
-        self.description_text = tk.Text(self, width=30, height=5)
+        self.description_text = RichTextEditor(self)
         self.description_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
 
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=5, pady=5, anchor=tk.SE)
 
+    def refresh(self):
+        """On re-render hook"""
+        self.description_text.destroy()
+        self.description_text = RichTextEditor(self)
+        self.description_text.pack(after=self.description_label, fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
+        #change_style(self, theme)
 
     def on_submit(self):
         d = self.date_entry.get().strip()
@@ -77,17 +84,13 @@ class BreaksFrame(tk.Frame):
             "employee_name": self.user_name_entry.get(),
             "event_timestamp": event_datetime.timestamp(),
             "event_result": '',
-            "event_description": self.description_text.get("1.0", tk.END)
+            "event_description": self.description_text.get_text_widget().get("1.0", tk.END)
         }
         
         add_break(breaks_data)
         showinfo('Η καταγραφή', 'Η καταγραφή καταχωρήθηκε με επιτυχία!')
 
 
-
-    def refresh(self):
-        """On re-render hook"""
-        
 
 # Use this to test your frame as a single app
 if __name__ == "__main__":

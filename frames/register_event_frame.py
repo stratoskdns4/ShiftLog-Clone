@@ -12,7 +12,7 @@ from .util_components import HourEntry
 from .util_components import DateEntry
 from .change_style import change_style
 
-from third_party.tk_rich_editor import create_text_editor
+from third_party.tk_rich_editor import RichTextEditor
 
 RESULT_VALUES = ("Saving", "Player", "Neutral", "Comercial Decision")
 # VIEW_OPTS = {'bg': 'lightblue'}
@@ -85,9 +85,19 @@ class RegisterEventFrame(tk.Frame):
         self.result_label.pack(side=tk.BOTTOM, fill=tk.X, pady=10, padx=5)
 
         # self.description_text = tk.Text(self)
-        self.description_text = create_text_editor(self)
+        # self.description_text = create_text_editor(self)
+        self.description_text = RichTextEditor(self)
         self.description_text.pack(fill=tk.BOTH, expand=True, padx=5)
 
+        change_style(self, theme)
+
+    
+    def refresh(self):
+        """On re-render hook"""
+        
+        self.description_text.destroy()
+        self.description_text = RichTextEditor(self, width=30, height=5)
+        self.description_text.pack(after=self.desc_label, fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
         change_style(self, theme)
 
     def clear_all(self):
@@ -99,7 +109,7 @@ class RegisterEventFrame(tk.Frame):
 
         # καθαρισμος entries και textbox
         self.employee_entry.delete(0, tk.END)
-        self.description_text.delete("1.0", tk.END)
+        self.description_text.get_text_widget().delete("1.0", tk.END)
 
         # επαναφορά combobox
         self.result_box.current(0)
@@ -111,7 +121,7 @@ class RegisterEventFrame(tk.Frame):
         # Πέρνω τα δεδομένα από τη φόρμα
         event_dict = {
             "employee_name": self.employee_entry.get(),
-            "event_description": self.description_text.get("1.0", tk.END).strip(),
+            "event_description": self.description_text.get_text_widget().get("1.0", tk.END).strip(),
             "event_result": self.result_box.get()
         }
 

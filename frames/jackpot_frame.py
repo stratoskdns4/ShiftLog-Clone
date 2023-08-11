@@ -8,6 +8,7 @@ from .util_components import UsernameEntry
 from .util_components import DateEntry
 
 from .change_style import change_style
+from third_party.tk_rich_editor import RichTextEditor
 
 theme = {
     "font-color": "black",
@@ -75,34 +76,43 @@ class JackpotFrame(tk.Frame):
         self.description_label = tk.Label(self, text="Περιγραφή")
         self.description_label.pack(padx=5, pady=5, anchor=tk.NW)
 
-        self.description_text = tk.Text(self, width=30, height=5)
+        self.description_text = RichTextEditor(self)
         self.description_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
 
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=15, pady=5, anchor=tk.SE)
 
         change_style(self, theme)
-    
+
+
+    def refresh(self):
+        """On re-render hook"""
+        self.description_text.destroy()
+        self.description_text = RichTextEditor(self)
+        self.description_text.pack(after=self.description_label, fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
+        
+        change_style(self, theme)
+
+
     def on_submit(self):
         jackpot_data = {
             "slot":self.slot_machine_entry.get(),
             "name":self.customer_name_entry.get(),
             "amount":float(self.amount_entry.get()),
             "time":self.jackpot_time_entry.get(),
-            "description":self.description_text.get("1.0", tk.END)
+            "description":self.description_text.get_text_widget().get("1.0", tk.END)
         }
 
         add_jackpot(jackpot_data)
         showinfo("Καταγραφή", "Η καταγραφή καταχωρήθηκε με επιτυχία!")
         self.clear_all()
-
-
+    
     def clear_all(self):
         self.amount_entry.delete(0, tk.END)
         self.jackpot_time_entry.delete(0, tk.END)
         self.slot_machine_entry.delete(0, tk.END)
         self.customer_name_entry.delete(0, tk.END)
-        self.description_text.delete("1.0", tk.END)
+        self.description_text.get_text_widget().delete("1.0", tk.END)
 
 
 if __name__ == "__main__":

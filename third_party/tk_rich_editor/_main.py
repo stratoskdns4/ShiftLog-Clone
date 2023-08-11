@@ -25,6 +25,7 @@ ASSETS = []
 def ImageOpenAsset(path, *args, **kwargs):
 	path = os.path.join(os.path.dirname(__file__), path)
 	img = Image.open(path, *args, **kwargs)
+	img = img.resize((18, 18), Image.ANTIALIAS)
 	ASSETS.append(img)
 	return img
 
@@ -330,7 +331,7 @@ def create_text_editor(parent):
 	# new
 	new_button = Button(name="toolbar_b2", borderwidth=1, command=new, width=20, height=20)
 	photo_new = ImageOpenAsset("icons/new.png")
-	photo_new = photo_new.resize((18, 18), Image.ANTIALIAS)
+	# photo_new = photo_new.resize((18, 18), Image.ANTIALIAS)
 	image_new = PhotoImageAsset(photo_new)
 	new_button.config(image=image_new)
 	new_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -338,7 +339,7 @@ def create_text_editor(parent):
 	# save
 	save_button = Button(name="toolbar_b1", borderwidth=1, command=save, width=20, height=20)
 	photo_save = ImageOpenAsset("icons/save.png")
-	photo_save = photo_save.resize((18, 18), Image.ANTIALIAS)
+	# photo_save = photo_save.resize((18, 18), Image.ANTIALIAS)
 	image_save = PhotoImageAsset(photo_save)
 	save_button.config(image=image_save)
 	save_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -346,7 +347,7 @@ def create_text_editor(parent):
 	#open
 	open_button = Button(name="toolbar_b3", borderwidth=1, command=open_file, width=20, height=20)
 	photo_open = ImageOpenAsset("icons/open.png")
-	photo_open = photo_open.resize((18, 18), Image.ANTIALIAS)
+	# photo_open = photo_open.resize((18, 18), Image.ANTIALIAS)
 	image_open = PhotoImageAsset(photo_open)
 	open_button.config(image=image_open)
 	open_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -354,7 +355,7 @@ def create_text_editor(parent):
 	# copy
 	copy_button = Button(name="toolbar_b4", borderwidth=1, command=copy, width=20, height=20)
 	photo_copy = ImageOpenAsset("icons/copy.png")
-	photo_copy = photo_copy.resize((18, 18), Image.ANTIALIAS)
+	# photo_copy = photo_copy.resize((18, 18), Image.ANTIALIAS)
 	image_copy = PhotoImageAsset(photo_copy)
 	copy_button.config(image=image_copy)
 	copy_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -362,7 +363,7 @@ def create_text_editor(parent):
 	#cut
 	cut_button = Button(name="toolbar_b5", borderwidth=1, command=cut, width=20, height=20)
 	photo_cut = ImageOpenAsset("icons/cut.png")
-	photo_cut = photo_cut.resize((18, 18), Image.ANTIALIAS)
+	# photo_cut = photo_cut.resize((18, 18), Image.ANTIALIAS)
 	image_cut = PhotoImageAsset(photo_cut)
 	cut_button.config(image=image_cut)
 	cut_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -370,7 +371,7 @@ def create_text_editor(parent):
 	# paste
 	paste_button = Button(name="toolbar_b6", borderwidth=1, command=paste, width=20, height=20)
 	photo_paste = ImageOpenAsset("icons/paste.png")
-	photo_paste = photo_paste.resize((18, 18), Image.ANTIALIAS)
+	# photo_paste = photo_paste.resize((18, 18), Image.ANTIALIAS)
 	image_paste = PhotoImageAsset(photo_paste)
 	paste_button.config(image=image_paste)
 	paste_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -378,7 +379,7 @@ def create_text_editor(parent):
 	# redo
 	redo_button = Button(name="toolbar_b7", borderwidth=1, command=redo, width=20, height=20)
 	photo_redo = ImageOpenAsset("icons/redo.png")
-	photo_redo = photo_redo.resize((18, 18), Image.ANTIALIAS)
+	# photo_redo = photo_redo.resize((18, 18), Image.ANTIALIAS)
 	image_redo = PhotoImageAsset(photo_redo)
 	redo_button.config(image=image_redo)
 	redo_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -386,7 +387,7 @@ def create_text_editor(parent):
 	# undo
 	undo_button = Button(name="toolbar_b8", borderwidth=1, command=undo, width=20, height=20)
 	photo_undo = ImageOpenAsset("icons/undo.png")
-	photo_undo = photo_undo.resize((18, 18), Image.ANTIALIAS)
+	# photo_undo = photo_undo.resize((18, 18), Image.ANTIALIAS)
 	image_undo = PhotoImageAsset(photo_undo)
 	undo_button.config(image=image_undo)
 	undo_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -394,7 +395,7 @@ def create_text_editor(parent):
 	# find
 	find_button = Button(name="toolbar_b9", borderwidth=1, command=find_text, width=20, height=20)
 	photo_find = ImageOpenAsset("icons/find.png")
-	photo_find = photo_find.resize((18, 18), Image.ANTIALIAS)
+	# photo_find = photo_find.resize((18, 18), Image.ANTIALIAS)
 	image_find = PhotoImageAsset(photo_find)
 	find_button.config(image=image_find)
 	find_button.pack(in_=toolbar, side="left", padx=4, pady=4)
@@ -423,7 +424,7 @@ def create_text_editor(parent):
 	#bold
 	bold_button = Button(name="formatbar_b1", borderwidth=1, command=bold, width=20, height=20, pady=10, padx=10)
 	photo_bold = ImageOpenAsset("icons/bold.png")
-	photo_bold = photo_bold.resize((18, 18), Image.ANTIALIAS)
+	# photo_bold = photo_bold.resize((18, 18), Image.ANTIALIAS)
 	image_bold = PhotoImageAsset(photo_bold)
 	bold_button.config(image=image_bold)
 	bold_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -431,7 +432,7 @@ def create_text_editor(parent):
 	# italic
 	italic_button = Button(name="formatbar_b2", borderwidth=1, command=italic, width=20, height=20)
 	photo_italic = ImageOpenAsset("icons/italic.png")
-	photo_italic = photo_italic.resize((18, 18), Image.ANTIALIAS)
+	# photo_italic = photo_italic.resize((18, 18), Image.ANTIALIAS)
 	image_italic = PhotoImageAsset(photo_italic)
 	italic_button.config(image=image_italic)
 	italic_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -439,7 +440,7 @@ def create_text_editor(parent):
 	# underline
 	underline_button = Button(name="formatbar_b3", borderwidth=1, command=underline, width=20, height=20)
 	photo_underline = ImageOpenAsset("icons/underline.png")
-	photo_underline = photo_underline.resize((18, 18), Image.ANTIALIAS)
+	# photo_underline = photo_underline.resize((18, 18), Image.ANTIALIAS)
 	image_underline = PhotoImageAsset(photo_underline)
 	underline_button.config(image=image_underline)
 	underline_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -447,7 +448,7 @@ def create_text_editor(parent):
 	# strike
 	strike_button = Button(name="formatbar_b4", borderwidth=1, command=strike, width=20, height=20)
 	photo_strike = ImageOpenAsset("icons/strike.png")
-	photo_strike = photo_strike.resize((18, 18), Image.ANTIALIAS)
+	# photo_strike = photo_strike.resize((18, 18), Image.ANTIALIAS)
 	image_strike = PhotoImageAsset(photo_strike)
 	strike_button.config(image=image_strike)
 	strike_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -455,7 +456,7 @@ def create_text_editor(parent):
 	# font_color
 	font_color_button = Button(name="formatbar_b5", borderwidth=1, command=change_color, width=20, height=20)
 	photo_font_color = ImageOpenAsset("icons/font-color.png")
-	photo_font_color = photo_font_color.resize((18, 18), Image.ANTIALIAS)
+	# photo_font_color = photo_font_color.resize((18, 18), Image.ANTIALIAS)
 	image_font_color = PhotoImageAsset(photo_font_color)
 	font_color_button.config(image=image_font_color)
 	font_color_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -463,7 +464,7 @@ def create_text_editor(parent):
 	# highlight
 	highlight_button = Button(name="formatbar_b6", borderwidth=1, command=highlight, width=20, height=20)
 	photo_highlight = ImageOpenAsset("icons/highlight.png")
-	photo_highlight = photo_highlight.resize((18, 18), Image.ANTIALIAS)
+	# photo_highlight = photo_highlight.resize((18, 18), Image.ANTIALIAS)
 	image_highlight = PhotoImageAsset(photo_highlight)
 	highlight_button.config(image=image_highlight)
 	highlight_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -471,7 +472,7 @@ def create_text_editor(parent):
 	# align_center
 	align_center_button = Button(name="formatbar_b7", borderwidth=1, command=align_center, width=20, height=20)
 	photo_align_center = ImageOpenAsset("icons/align-center.png")
-	photo_align_center = photo_align_center.resize((18, 18), Image.ANTIALIAS)
+	# photo_align_center = photo_align_center.resize((18, 18), Image.ANTIALIAS)
 	image_align_center = PhotoImageAsset(photo_align_center)
 	align_center_button.config(image=image_align_center)
 	align_center_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -479,7 +480,7 @@ def create_text_editor(parent):
 	# align_justify
 	align_justify_button = Button(name="formatbar_b8", borderwidth=1, command=align_justify, width=20, height=20)
 	photo_align_justify = ImageOpenAsset("icons/align-justify.png")
-	photo_align_justify = photo_align_justify.resize((18, 18), Image.ANTIALIAS)
+	# photo_align_justify = photo_align_justify.resize((18, 18), Image.ANTIALIAS)
 	image_align_justify = PhotoImageAsset(photo_align_justify)
 	align_justify_button.config(image=image_align_justify)
 	align_justify_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -487,7 +488,7 @@ def create_text_editor(parent):
 	# align_left
 	align_left_button = Button(name="formatbar_b9", borderwidth=1, command=align_left, width=20, height=20)
 	photo_align_left = ImageOpenAsset("icons/align-left.png")
-	photo_align_left = photo_align_left.resize((18, 18), Image.ANTIALIAS)
+	# photo_align_left = photo_align_left.resize((18, 18), Image.ANTIALIAS)
 	image_align_left = PhotoImageAsset(photo_align_left)
 	align_left_button.config(image=image_align_left)
 	align_left_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
@@ -495,7 +496,7 @@ def create_text_editor(parent):
 	# align_right
 	align_right_button = Button(name="formatbar_b10", borderwidth=1, command=align_right, width=20, height=20)
 	photo_align_right = ImageOpenAsset("icons/align-right.png")
-	photo_align_right = photo_align_right.resize((18, 18), Image.ANTIALIAS)
+	# photo_align_right = photo_align_right.resize((18, 18), Image.ANTIALIAS)
 	image_align_right = PhotoImageAsset(photo_align_right)
 	align_right_button.config(image=image_align_right)
 	align_right_button.pack(in_=formattingbar, side="left", padx=4, pady=4)
