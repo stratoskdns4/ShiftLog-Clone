@@ -5,7 +5,7 @@ from frames.login_frame import LoginFrame
 from login_controller import LoginController
 
 
-DEBUG = True
+DEBUG = False
 
 
 class App:

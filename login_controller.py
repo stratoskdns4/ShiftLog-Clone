@@ -30,6 +30,16 @@ class LoginController(metaclass=Singleton):
         else:
             return False
         
+    def log_user_by_id(self, user_id):
+        user = User.query.eq_pk(user_id).one()
+        # eq_username(username).one()
+        if user is None:
+            return False
+        
+        self.logged_in_user = user.username
+        self.on_login()
+        return True
+        
     def do_logout(self):
         self.logged_in_user = None
         self.on_logout()

@@ -4,6 +4,7 @@ from tkinter import ttk
 from .constants import LABEL_FONT
 
 from login_controller import LoginController
+from face_recognizer.face_login_popup import FaceLoginPopup
 
 class LoginFrame(tk.Frame):
 
@@ -31,6 +32,9 @@ class LoginFrame(tk.Frame):
         self.submit_button = tk.Button(self, text='Σύνδεση', command=self.on_submit)
         self.submit_button.pack(anchor=tk.W, padx=10, pady=5)
 
+        self.face_login_button = tk.Button(self, text='Σύνδεση με αναγνώριση προσώπου', command=self.on_face_login_init)
+        self.face_login_button.pack(anchor=tk.W, padx=10, pady=5)
+
     
     def on_submit(self):
         username = self.username_entry.get()
@@ -49,6 +53,20 @@ class LoginFrame(tk.Frame):
 
     def hide_error_message(self):
         self.message_label.config(text="")
+
+    
+    def on_face_login_init(self):
+        self.face_recongizer = FaceLoginPopup(self)
+        self.face_login_button.config(state=tk.DISABLED)
+
+        # def on_pop_close():
+        #     print('test')
+        #     self.face_login_button.config(state=tk.NORMAL)
+        #     self.face_recongizer.destroy()
+
+            
+        # self.face_recongizer.protocol("WM_DELETE_WINDOW", on_pop_close)
+        self.face_recongizer.mainloop()
 
    
 
