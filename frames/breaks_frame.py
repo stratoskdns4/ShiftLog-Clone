@@ -11,7 +11,22 @@ from .constants import LABEL_FONT
 from .util_components import UsernameEntry, HourEntry, DateEntry
 from third_party.tk_rich_editor import RichTextEditor
 
+from .change_style import change_style
+
 INFORMATION_TYPES = ("Βγήκα για διάλειμμα", "Γύρισα από διάλειμμα", 'Βγήκα για τσιγάρο', 'Γύρισα από τσιγάρο')
+
+
+theme = {
+    "font-color": "black",
+    "empty-background" : {
+        'bg':'lightgreen'
+    },
+    "filled-background": {
+        'bg': 'lightgreen',
+        'fg': 'black'
+    }
+}
+
 
 class BreaksFrame(tk.Frame):
 
@@ -63,13 +78,16 @@ class BreaksFrame(tk.Frame):
 
         self.submit_button = tk.Button(self, text="Καταχώρηση", command=self.on_submit)
         self.submit_button.pack(side=tk.BOTTOM, padx=5, pady=5, anchor=tk.SE)
+     
+        change_style(self, theme)
 
     def refresh(self):
         """On re-render hook"""
         self.description_text.destroy()
         self.description_text = RichTextEditor(self)
         self.description_text.pack(after=self.description_label, fill=tk.BOTH, expand=True, padx=5, pady=5, anchor=tk.NW)
-        #change_style(self, theme)
+        
+        change_style(self, theme)
 
     def on_submit(self):
         d = self.date_entry.get().strip()

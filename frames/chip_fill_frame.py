@@ -18,7 +18,7 @@ theme = {
 }
 
 CHIP_VALUES = [5000, 1000, 500, 100, 25, 10, 5, 2.5] #, 1.25]
-
+SINGLE_CHIP_THEMES = [{'font-color': 'black', 'empty-background': {'bg': 'brown'}, 'filled-background': {'bg': '#385905', 'fg': 'black'}}, {'font-color': 'black', 'empty-background': {'bg': 'brown'}, 'filled-background': {'bg': '#7f7e79', 'fg': 'black'}}, {'font-color': 'black', 'empty-background': {'bg': 'brown'}, 'filled-background': {'bg': '#dbba22', 'fg': 'black'}}, {'font-color': 'white', 'empty-background': {'bg': 'brown'}, 'filled-background': {'bg': '#14151a', 'fg': 'white'}}, {'font-color': 'black', 'empty-background': {'bg': 'brown'}, 'filled-background': {'bg': '#5da663', 'fg': 'black'}}, {'font-color': 'black', 'empty-background': {'bg': 'brown'}, 'filled-background': {'bg': '#e07bd7', 'fg': 'black'}}, {'font-color': 'black', 'empty-background': {'bg': 'brown'}, 'filled-background': {'bg': '#d92c20', 'fg': 'black'}}, {'font-color': 'white', 'empty-background': {'bg': 'brown'}, 'filled-background': {'bg': '#4c5849', 'fg': 'white'}}]
 
 class ChipFillFrame(tk.Frame):
 
@@ -52,11 +52,12 @@ class ChipFillFrame(tk.Frame):
 
         change_style(self, theme)
         
+        for chip_frame, chip_theme in zip(self.single_chip_comps, SINGLE_CHIP_THEMES):
+            change_style(chip_frame, chip_theme)
 
         self.update_label()
 
       
-
 
     def update_label(self, *args):
         total_chip_value = 0
