@@ -5,7 +5,7 @@ from frames.login_frame import LoginFrame
 from login_controller import LoginController
 
 
-DEBUG = False
+DEBUG = True
 
 
 class App:
@@ -35,7 +35,7 @@ class App:
         lc = LoginController(self.go_to_main_view, self.go_to_login_view)
 
         if DEBUG:
-            lc.do_login('aaaa', 'bbbb')
+            lc.do_login('test', '1234')
         
         logger.warning('mainloop of app')
         self.window.mainloop()

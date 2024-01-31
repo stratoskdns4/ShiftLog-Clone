@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-
+from .camera_frame import CameraFrame
 from .register_event_frame import RegisterEventFrame
 from .chip_fill_frame import ChipFillFrame
 from .tables_frame import TablesFrame
@@ -44,6 +44,7 @@ class MainFrame(tk.Frame):
 
 
         self.pages = {
+            'camera': CameraFrame(self.notebook),
             'register': RegisterEventFrame(self.notebook),
             'breaks': BreaksFrame(self.notebook),
             'tables': TablesFrame(self.notebook),
